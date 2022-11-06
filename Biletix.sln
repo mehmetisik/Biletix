@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Entity", "1-Entity", "{0C28F9FC-E5C2-42E2-A96B-4313CB7361C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Data", "2-Data", "{E58AF5A6-4983-495E-BC49-5B680FFD1F87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-UI", "3-UI", "{C3368E96-DB4A-4383-8A4C-8965E76926AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biletix.Entity", "Biletix.Entity\Biletix.Entity.csproj", "{10E16768-0443-49D2-9187-ECE0A086DFBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biletix.Data", "Biletix.Data\Biletix.Data.csproj", "{6329DF16-B878-44FA-8B1F-A2D425D5DC13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biletix.UI", "Biletix.UI\Biletix.UI.csproj", "{EED32D81-6CAC-4E20-9DC3-5E70DA036793}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10E16768-0443-49D2-9187-ECE0A086DFBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10E16768-0443-49D2-9187-ECE0A086DFBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10E16768-0443-49D2-9187-ECE0A086DFBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10E16768-0443-49D2-9187-ECE0A086DFBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6329DF16-B878-44FA-8B1F-A2D425D5DC13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6329DF16-B878-44FA-8B1F-A2D425D5DC13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6329DF16-B878-44FA-8B1F-A2D425D5DC13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6329DF16-B878-44FA-8B1F-A2D425D5DC13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EED32D81-6CAC-4E20-9DC3-5E70DA036793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EED32D81-6CAC-4E20-9DC3-5E70DA036793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EED32D81-6CAC-4E20-9DC3-5E70DA036793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EED32D81-6CAC-4E20-9DC3-5E70DA036793}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{10E16768-0443-49D2-9187-ECE0A086DFBB} = {0C28F9FC-E5C2-42E2-A96B-4313CB7361C9}
+		{6329DF16-B878-44FA-8B1F-A2D425D5DC13} = {E58AF5A6-4983-495E-BC49-5B680FFD1F87}
+		{EED32D81-6CAC-4E20-9DC3-5E70DA036793} = {C3368E96-DB4A-4383-8A4C-8965E76926AF}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://mehmetisik.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Biletix.Entity\\Biletix.Entity.csproj
+		SccProjectTopLevelParentUniqueName1 = Biletix.sln
+		SccProjectName1 = Biletix.Entity
+		SccLocalPath1 = Biletix.Entity
+		SccProjectUniqueName2 = Biletix.Data\\Biletix.Data.csproj
+		SccProjectTopLevelParentUniqueName2 = Biletix.sln
+		SccProjectName2 = Biletix.Data
+		SccLocalPath2 = Biletix.Data
+		SccProjectUniqueName3 = Biletix.UI\\Biletix.UI.csproj
+		SccProjectTopLevelParentUniqueName3 = Biletix.sln
+		SccProjectName3 = Biletix.UI
+		SccLocalPath3 = Biletix.UI
+	EndGlobalSection
+EndGlobal

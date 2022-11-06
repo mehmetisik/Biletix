@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageAnasayfa.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <!-- ======== MAIN CONTENT ======== -->
+            <div class="col col_8_of_12 main_content">
+                <!-- ======== PAGE TITLE ======== -->
+                <div id="page_title">
+                    <h1>İletişim</h1>
+                </div>
+                <!-- ======== BREADCRUMB ======== -->
+                <ul class="breadcrumb">
+                    <li><a href="@Url.Action("Index","Home") ">Anasayfa</a></li>
+                    <li>Hakkımzıda</li>
+                </ul>
+                <!-- ======== SINGLE ARTICLE ======== -->
+                <article class="single_post">
+                    <!-- ======== ARTICLE FEATURED ======== -->
+                    @*<div class="post_featured"> </div>*@
+                        @*<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11216.32622438428!2d19.006072609036117!3d45.34716592763217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475c8f9a2e477a6b%3A0xb6de633cd7e8cfab!2sVukovar!5e0!3m2!1shr!2shr!4v1427995484120" width="636" height="382" frameborder="0" style="border:0"></iframe>*@
+                        <div id="contact-map" class="post_featured">
+                            <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+                            <div style='overflow: hidden; height: 382px; width: 636px;'>
+                                <div id='gmap_canvas' style='height:382px; width: 636px;'></div>
+                                <style>
+                                    #gmap_canvas img {
+                                        max-width: none !important;
+                                        background: none !important;
+                                    }
+                                </style>
+                            </div>
+                            <a href='http://www.psychiaterbuch.de/' style="-ms-opacity: 0; opacity: 0">Yükleniyor...</a>
+                            <script type='text/javascript' src='http://embedmaps.com/google-maps-authorization/script.js?id=c4f02ae690c1f672f99e86a5e19ebce1152c26c8'></script>
+                            <script type='text/javascript'>
+                        function init_map() {
+                            var myOptions = { zoom: 17, center: new google.maps.LatLng(40.9785089, 28.8733454), mapTypeId: google.maps.MapTypeId.ROADMAP };
+                            map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+                            marker = new google.maps.Marker({ map: map, position: new google.maps.LatLng(40.9785089, 28.8733454) });
+                            infowindow = new google.maps.InfoWindow({ content: '<strong>Bilge Adam Bakırköy Şube</strong><br>Zeytinlik Mah.,Fişekhane Cad. No:14,34140 <br>Bakırköy Istanbul<br>' });
+                            google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); });
+                            infowindow.open(map, marker);
+                        }
+
+                        google.maps.event.addDomListener(window, 'load', init_map);
+                            </script>
+                        </div>
+
+
+
+
+
+                   
+                    <!-- ======== ARTICLE CONTENT ======== -->
+                    <div class="post_content">
+                        <p>Türkiye’nin eğlence sektöründe lider biletleme firmasıyız. Ödüllü web sitemiz, çağrı merkezimiz, perakende satış noktalarımız, mobil, kiosk ve banka ATM ağı uygulamalarımız ile tüm Türkiye çapında hizmet sunuyoruz.</p><p> Etkinlik organizasyonu, e-ticaret, sanatçı yönetimi ve pazarlama çözümlerini de içeren her biri kendi alanında lider dört şirketten oluşur:</p>
+                        <div class="block_title">
+                            <h2>İletişim Formu</h2>
+                        </div>
+                        <form class="contact_form" action="/Hakkimizda/IletisimMail" method="post">
+                            <div class="form_group">
+                                <label>Adınız </label>
+                                <input type="text" name="AdSoyad">
+                            </div>
+                            <div class="form_group">
+                                <label>Mail Adresiniz</label>
+                                <input type="text" name="Email">
+                            </div>
+                            <div class="form_group">
+                                <label>Konu </label>
+                                <input type="text" name="Konu">
+                            </div>
+                            <div class="form_group">
+                                <label>Mesajınız </label>
+                                <textarea name="Mesaj"></textarea>
+                            </div>
+                            <div class="form_group">
+                                <input type="submit" value="Mesaj Gönder" class="btn" style="background-color: #349dc9">
+                                @if (ViewBag.Posta == "Mesajınız İletilmiştir. İlginiz İçin Teşekkür Ederiz.")
+                                {
+                                    <span style="color:green">@ViewBag.Posta</span>
+                                }
+                                else if (ViewBag.Posta == "Mesaj Gönderirken Bir Hata Oluştu. Tekrar Deneyiniz..")
+                                {
+                                    <span style="color:red">@ViewBag.Posta</span>
+                                }
+                                else
+                                {
+                                        
+                                }
+
+
+
+
+                            </div>
+                        </form>
+                    </div>
+                </article>
+            </div>
+            <!-- ======== SIDEBAR ======== -->
+            <div class="col col_4_of_12 sidebar">
+                <!-- ======== WIDGET - SEARCH ======== -->
+                <div class="widget widget_text">
+                    <div class="widget_title">
+                        <h4>Hakkımızda</h4>
+                    </div>
+                    <p>Türkiye’nin eğlence sektöründe lider biletleme firmasıyız. Ödüllü web sitemiz, çağrı merkezimiz, perakende satış noktalarımız, mobil, kiosk ve banka ATM ağı uygulamalarımız ile tüm Türkiye çapında hizmet sunuyoruz.</p><p> Etkinlik organizasyonu, e-ticaret, sanatçı yönetimi ve pazarlama çözümlerini de içeren her biri kendi alanında lider dört şirketten oluşur:</p>
+                </div>
+                <!-- ======== WIDGET - SOCIALIZE ======== -->
+                <div class="widget widget_socialize">
+                    <div class="widget_title">
+                        <h4>Sosyal Ağlarımız</h4>
+                    </div>
+                    <div class="soc_box">
+                        <div class="icon facebook"><i class="fa fa-facebook"></i></div>
+                        <div class="soc_card">
+                            <a href="https://www.facebook.com/codeostudio" target="_blank">
+                                <div class="number">50.359</div>
+                                <div class="text">Followers</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="soc_box">
+                        <div class="icon twitter"><i class="fa fa-twitter"></i></div>
+                        <div class="soc_card">
+                            <a href="https://twitter.com/codeostudio" target="_blank">
+                                <div class="number">62.154</div>
+                                <div class="text">Fans</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="soc_box">
+                        <div class="icon dribbble"><i class="fa fa-dribbble"></i></div>
+                        <div class="soc_card">
+                            <a href="https://dribbble.com/codeostudio" target="_blank">
+                                <div class="number">9.754</div>
+                                <div class="text">Subscribers</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="soc_box">
+                        <div class="icon google"><i class="fa fa-google-plus"></i></div>
+                        <div class="soc_card">
+                            <a href="#">
+                                <div class="number">12.098</div>
+                                <div class="text">People</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ======== WIDGET - BANNER 300X250 ======== -->
+                <div class="widget widget_banner_300x250">
+                    <div class="widget_title">
+                        <h4>Banner</h4>
+                    </div>
+                    <div class="banner">
+                        <a href="http://themeforest.net/?ref=CodeoStudio" target="_blank"><img src="/Content/demo/banners/300x250.jpg" alt="GoodStart"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+

@@ -1,0 +1,131 @@
+﻿@model Biletix.Entity.Gosteri
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_LayoutPageAnasayfa.cshtml";
+}
+
+@if (Session["UyeGiris"] != null)
+{
+    <div class="widget widget_review_posts" style="width:1000px">
+        <div class="widget_title">
+            <h4>@Model.GösteriAdi </h4>
+        </div>
+
+        <div class="item" style="float:left">
+            <div class="item_header">
+
+            </div>
+            <div class="item_wrapper" style="border-radius:10px;width:350px">
+                <div class="item_content">
+                    <form action="@Url.Action("Bilet","SatinAl", new { id = Model.GosteriId })" method="post">
+
+                        <a>Tarih Seçiniz : </a>
+                        <select style="width:250px;">
+                           
+                            
+
+                           
+                            <option >@Model.GosteriBaslangıcZamani </option>
+                            @*<option>16 Temmuz 2016 18:00</option>*@
+                            
+                        </select>
+                        <hr />
+
+
+
+                        <a>Bilet Seçimi : </a>
+
+                        <select style="width:70px;">
+
+                            @for (int i = 1; i < 10; i++)
+                            {
+                                <option>@i</option>
+                            }
+
+
+                            @*<option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>*@
+
+                        </select>
+
+                        <select style="width:200px;margin-left:30%;margin-top:-11.5%;">
+
+
+                            <option>Lütfen Seçiniz</option>
+
+
+
+                            @foreach (var item in Model.Fiyatlar)
+                            {
+                              
+                                <option>@item.Aciklama : @item.Fiyat TL</option>
+                            }
+
+
+                            @*<option>Deluxe VIP Teras : 672.00 TL</option>
+                            <option>Diamond Circle : 450.00 TL</option>
+                            <option>Golden Circle : 256.00 TL</option>
+                            <option>Ayakta : 172.00 TL</option>*@
+
+                        </select>
+                        <hr />
+
+                        <a>Bölüm / Blok : </a>
+
+                        <select style="width:250px;">
+
+                            <option>Lütfen Seçiniz</option>
+                            @foreach (var item in Model.Fiyatlar)
+                            {
+                                <option>@item.Aciklama </option>
+                            }
+
+                            @*<option>Diamond - Sol Taraf</option>
+                            <option>Diamond- Sağ Taraf</option>
+                            <option>Golden- Sol Taraf</option>
+                            <option>Golden- Sağ Taraf</option>*@
+                            
+
+                        </select>
+
+                        <hr />
+
+
+
+
+
+                      
+
+                        <input type="submit" name="btnSifreGuncelle" value="Bilet Satın Al" style="background-color:#349dc9" />
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div style="float:left;margin-left:40%;margin-top:-37% ;   background-color:white;width:650px;height:auto;border-radius:10px" class="item_wrapper">
+            <div class="item_content" style="margin-left:5%;margin-top:1%">
+
+                <div style="background-color:lightgrey;width:95%;text-align:center">
+                <h4>@Model.Mekan.MekanAdi  </h4>
+                <div style="background-image:url(/Content/img/park.gif);width:100%;height:400px;background-repeat:no-repeat;background-size:cover"></div>
+                
+                
+                
+                
+                
+                
+                
+                </div>
+
+           
+            </div>
+        </div>
+    </div>
+}

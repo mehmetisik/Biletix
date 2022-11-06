@@ -1,0 +1,38 @@
+﻿
+@{
+
+    //List<Biletix.Entity.Gosteri> haber = ViewBag.GosteriHaber as List<Biletix.Entity.Gosteri>;
+    List<Biletix.Entity.Gosteri> Resimler = ViewBag.GosteriOneCikanResimler as List<Biletix.Entity.Gosteri>;
+}
+
+
+<div class="breaking_news dark">
+    <div class="container">
+        <div class="breaking_title">Yaklasan Gösteriler</div>
+        <div class="breaking_block">
+
+            @foreach (var item in Resimler )
+            {
+                <div class="item">
+                    <span class="date">@item.GosteriBaslangıcZamani </span>
+                    <h4><a href="post_gallery.html">@item.GösteriAdi : @item.Aciklama</a></h4>
+                </div>
+            }
+
+
+
+            @*<div class="item">
+                <span class="date">14:56 AM</span>
+                <h4><a href="post_gallery.html">In his latest book, Dr. Offit takes aim at those who use religious reasoning to disavow lifesaving medical treatments</a></h4>
+            </div>
+            <div class="item">
+                <span class="date">07:32 AM</span>
+                <h4><a href="post_gallery.html">In 'Rocket to the Moon,' a Dentist Deals With a Midlife Crisis</a></h4>
+            </div>
+            <div class="item">
+                <span class="date">18:45 AM</span>
+                <h4><a href="post_gallery.html">Dentist Deals With a Midlife Crisis</a></h4>
+            </div>*@
+        </div>
+    </div>
+</div>

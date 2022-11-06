@@ -1,0 +1,396 @@
+﻿@using System.Web.Optimization
+@using PagedList;
+@using PagedList.Mvc
+@model  IPagedList<Biletix.UI.Areas.Admin.Models.ModelUye>
+@{
+    ViewBag.Title = "Admin-Üyeler";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutUIAdmin.cshtml";
+}
+
+@{
+    List<Biletix.UI.Areas.Admin.Models.ModelSehir> SehirListesi = ViewData["sehirler"] as List<Biletix.UI.Areas.Admin.Models.ModelSehir>;
+}
+
+<br />
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                TÜm Üyelerin Listesi
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                        <div class="row"><div class="col-sm-6"></div><div class="col-sm-6"><div id="dataTables-example_filter" class="dataTables_filter" style="float:right"><label>Ara:<input type="search" class="form-control input-sm" placeholder="" aria-controls="dataTables-example"></label></div></div></div><div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 172px;">Ad</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 204px;">Soyad</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 149px;">Adres</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110px;">Email</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110px;">Şifre</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110px;">Telefon</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110px;">ŞehirId</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 172px;">
+                                                Güncelle
+                                            </th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" style="width: 172px;">
+                                                Sil
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr id="@item.UyeId" class="gradeA odd" role="row"><td class="sorting_1">@item.Ad</td><td class="sorting_1">@item.Soyad</td><td class="sorting_1">@item.Adres</td><td class="sorting_1">@item.Email</td><td class="sorting_1">@item.Sifre</td><td class="sorting_1">@item.Telefon</td> <td class="sorting_1">@item.Sehir.SehirAd</td><td class="sorting_1"><a href="#" uyeGID="@item.UyeId" id="Guncelle" onclick="Duzenle(this)">Güncelle</a></td> <td class="sorting_1"><a href="#" UyeSID="@item.UyeId" onclick="sil(this)">Sil</a></td></tr>
+                                        }
+
+
+                                        @*<tr class="gradeA odd" role="row">
+                                                <td class="sorting_1">Gecko</td>
+                                                <td class="sorting_1">Gecko</td>
+                                                <td class="sorting_1">Gecko</td>
+                                                <td class="sorting_1">Gecko</td>
+                                                <td class="sorting_1">Gecko</td>
+                                                <td class="sorting_1">Gecko</td>
+                                                <td class="sorting_1">Gecko</td>
+
+                                            </tr>*@
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-sm-6">
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div style="float:right">
+                                    @Html.PagedListPager(Model, _sayfaNo => Url.Action("Index", "UyeAdmin", new { SayfaNo = _sayfaNo }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< İlk", LinkToPreviousPageFormat = "< Önceki", LinkToNextPageFormat = "Sonraki >", LinkToLastPageFormat = "Son >>" })
+                                </div>
+                                @*<div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate"><ul class="pagination"><li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous"><a href="#">Previous</a></li><li class="paginate_button active" aria-controls="dataTables-example" tabindex="0"><a href="#">1</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">2</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">3</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">4</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">5</a></li><li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">6</a></li><li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next"><a href="#">Next</a></li></ul>
+                                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.table-responsive -->
+
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Uye Bilgileri Düzenleme
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form role="form">
+                            <div class="form-group">
+                                <label>Ad</label>
+                                <input class="form-control" type="text" id="Ad" value="">
+                                <p class="help-block" id="adValidate" style="color:red"></p>
+
+                                <label>Soyad</label>
+                                <input class="form-control" type="text" id="Soyad" value="" />
+                                <p class="help-block" id="soyadValidate" style="color:red"></p>
+
+                                <label>Adres</label>
+                                <input class="form-control" type="text" id="Adres" value="" />
+
+                                <label>Email</label>
+                                <input class="form-control" type="text" id="Email" value="" />
+                                <p class="help-block" id="emailValidate" style="color:red"></p>
+
+                                <label>Şifre</label>
+                                <input class="form-control" type="text" id="Sifre" value="" />
+                                <p class="help-block" id="sifreValidate" style="color:red"></p>
+
+                                <label>Telefon</label>
+                                <input class="form-control" type="text" id="Telefon" value="" />
+
+                                <label>Şehir</label>
+                                <select class="form-control" id="sehirler">
+                                    @foreach (var item in SehirListesi)
+                                    {
+                                        <option id="@item.SehirId">@item.SehirAd</option>
+
+                                    }
+
+
+                                </select>
+
+                            </div>
+
+                            <button type="button" class="btn btn-default" onclick="KaydetOrGuncelle(this)" id="KaydetOrGuncelleBtn">Kaydet</button>
+                            <button type="reset" class="btn btn-default" onclick="iptal()">İptal</button>
+                        </form>
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+                    <!-- /.col-lg-6 (nested) -->
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+@Scripts.Render("~/ali")
+
+@*<script src="~/Areas/Admin/Content/bower_components/jquery/dist/jquery.min.js"></script>*@
+
+<script>
+
+    function iptal() {
+        var kaydetBtn = document.getElementById("KaydetOrGuncelleBtn").innerText = "Kaydet";
+        var uyeAd = document.getElementById("Ad").value = "";
+        var uyeSoyad = document.getElementById("Soyad").value = "";
+        var uyeAdres = document.getElementById("Adres").value = "";
+        var uyeEmail = document.getElementById("Email").value = "";
+        var uyeSifre = document.getElementById("Sifre").value = "";
+        var uyeTelefon = document.getElementById("Telefon").value = "";
+    }
+
+    function sil(gelen) {
+        var silinecekID = gelen.attributes["uyeSID"].value;
+
+        $.ajax({
+            url: '@Url.Action("UyeSil", "UyeAdmin")',
+            type: 'GET',
+            data: {
+                ID: silinecekID
+            },
+            success: function () {
+                var silinecekSatir = document.getElementById(silinecekID);
+
+                silinecekSatir.remove();
+            },
+            error: function () {
+                alert("Hata")
+            }
+
+
+        })
+    }
+
+    //function SehirSec(ID) {
+    //    var sehirSelect = document.getElementById("sehirler");
+
+    //    //sehirSelect[sehirSelect.selectedIndex].id = 8;
+
+    //}
+
+    var guncellenecekSatir;
+
+
+    function Duzenle(gelen) {
+
+        var guncellenecekID = gelen.attributes["uyeGID"].value;
+        var uyeAd = document.getElementById("Ad");
+        var uyeSoyad = document.getElementById("Soyad");
+        var uyeAdres = document.getElementById("Adres");
+        var uyeEmail = document.getElementById("Email");
+        var uyeSifre = document.getElementById("Sifre");
+        var uyeTelefon = document.getElementById("Telefon");
+
+        var sehirSelect = document.getElementById("sehirler");
+
+
+        guncellenecekSatir = document.getElementById(guncellenecekID);
+        var kaydetToGuncelleButon = document.getElementById("KaydetOrGuncelleBtn");
+
+        $.ajax({
+
+            url: '@Url.Action("UyeDuzenle","UyeAdmin")',
+            type: 'GET',
+            data: {
+                ID: guncellenecekID
+
+            },
+            success: function (data) {
+
+
+                uyeAd.value = data.Ad;
+                uyeSoyad.value = data.Soyad;
+                uyeAdres.value = data.Adres;
+                uyeEmail.value = data.Email;
+                uyeSifre.value = data.Sifre;
+                uyeTelefon.value = data.Telefon;
+
+                sehirSelect.value = guncellenecekSatir.cells[6].innerText;
+
+                uyeAd.attributes["uyeid"] = data.UyeId;
+                kaydetToGuncelleButon.innerText = "Güncelle";
+
+
+
+
+            },
+            error: function () {
+                alert("Hata")
+            }
+
+        })
+
+    }
+
+    function KaydetOrGuncelle(gelenBtn) {
+        var uyeAd = document.getElementById("Ad");
+        var uyeSoyad = document.getElementById("Soyad");
+        var uyeAdres = document.getElementById("Adres");
+        var uyeTelefon = document.getElementById("Telefon");
+        var uyeSifre = document.getElementById("Sifre");
+        var uyeEmail = document.getElementById("Email");
+        var secilenSehirSelect = document.getElementById("sehirler");
+
+
+        var sehirId = secilenSehirSelect[secilenSehirSelect.selectedIndex].id;
+        var sehirAd = secilenSehirSelect[secilenSehirSelect.selectedIndex].value;
+        var secilenSehirSelect = document.getElementById("sehirler");
+
+        if (uyeAd.value == "" || uyeSoyad.value == "" || uyeEmail.value == "" || uyeSifre.value == "") {
+            if (uyeAd.value == "") {
+                adValidate.innerText = "Ad Boş Geçilemez"
+            }
+            else {
+                adValidate.innerText = ""
+            }
+            if (uyeSoyad.value =="") {
+                soyadValidate.innerText ="Soyad Boş Geçilemez"
+            }
+            else {
+                soyadValidate.innerText =""
+            }
+            if (uyeEmail.value=="") {
+                emailValidate.innerText ="Email Boş Geçilemez"
+            }
+            else {
+                emailValidate.innerText = ""
+            }
+            if (uyeSifre.value =="") {
+                sifreValidate.innerText ="Şifre Boş Geçilemez"
+            }
+            else {
+                sifreValidate.innerText = ""
+            }
+
+        }
+        else {
+            adValidate.innerText = ""
+            soyadValidate.innerText = ""
+            emailValidate.innerText = ""
+            sifreValidate.innerText = ""
+
+
+            if (gelenBtn.innerText == "Kaydet") {
+
+                $.ajax({
+
+                    url: '@Url.Action("UyeKaydetGuncelle","UyeAdmin")',
+                    type: 'GET',
+                    data: {
+                        Ad: uyeAd.value,
+                        Soyad: uyeSoyad.value,
+                        Adres: uyeAdres.value,
+                        Email: uyeEmail.value,
+                        Sifre: uyeSifre.value,
+                        Telefon: uyeTelefon.value,
+                        SehirId: sehirId
+
+                    },
+                    success: function (osman) {
+                        var Uyeler = document.getElementById("dataTables-example");
+
+                        var htmlSatirlar = '  <tr id="' + osman.ID + '" class="gradeA odd" role="row"><td class="sorting_1">' + uyeAd.value + '</td><td class="sorting_1">' + uyeSoyad.value + '</td><td class="sorting_1">' + uyeAdres.value + '</td><td class="sorting_1">' + uyeEmail.value + '</td><td class="sorting_1">' + uyeSifre.value + '</td><td class="sorting_1">' + uyeTelefon.value + '</td><td class="sorting_1">' + sehirAd + '</td><td class="sorting_1"><a href="#" uyeGID="' + osman.ID + '" id="Guncelle" onclick="Duzenle(this)">Güncelle</a></td> <td class="sorting_1"><a href="#" uyeSID="' + osman.ID + '" onclick="sil(this)" >Sil</a></td></tr>'
+
+                        uyeAd.value = "";
+                        uyeSoyad.value = "";
+                        uyeAdres.value = "";
+                        uyeEmail.value = "";
+                        uyeSifre.value = "";
+                        uyeTelefon.value = "";
+
+                        Uyeler.innerHTML += htmlSatirlar;
+
+
+                    },
+                    error: function () {
+                        alert("Hata")
+                    }
+
+
+                });
+
+            }
+
+            else {
+
+                $.ajax({
+
+                    url: '@Url.Action("UyeKaydetGuncelle","UyeAdmin")',
+                    type: 'GET',
+                    data: {
+
+                        UyeId: guncellenecekSatir.id,
+                        Ad: uyeAd.value,
+                        Soyad: uyeSoyad.value,
+                        Adres: uyeAdres.value,
+                        Sifre: uyeSifre.value,
+                        Email: uyeEmail.value,
+                        Telefon: uyeTelefon.value,
+                        SehirId: sehirId
+                    },
+
+                    success: function () {
+
+                        guncellenecekSatir.cells[0].innerText = uyeAd.value
+                        guncellenecekSatir.cells[1].innerText = uyeSoyad.value
+                        guncellenecekSatir.cells[2].innerText = uyeAdres.value
+                        guncellenecekSatir.cells[3].innerText = uyeEmail.value
+                        guncellenecekSatir.cells[4].innerText = uyeSifre.value
+                        guncellenecekSatir.cells[5].innerText = uyeTelefon.value
+                        guncellenecekSatir.cells[6].innerText = sehirAd;
+
+                        uyeAd.value = "";
+                        uyeSoyad.value = "";
+                        uyeAdres.value = "";
+                        uyeEmail.value = "";
+                        uyeSifre.value = "";
+                        uyeTelefon.value = "";
+
+                        gelenBtn.innerText = "Kaydet";
+
+                    },
+
+                    error: function () {
+                        alert("Hata")
+                    }
+
+                })
+
+            }
+        }
+
+    }
+
+
+</script>

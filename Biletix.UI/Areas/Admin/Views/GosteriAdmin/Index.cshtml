@@ -1,0 +1,715 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model IPagedList<Biletix.UI.Areas.Admin.Models.ModelGosteri>
+
+@{
+    ViewBag.Title = "Gösteri - Admin";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutUIAdmin.cshtml";
+
+    List<Biletix.UI.Areas.Admin.Models.ModelMekan> mekanlar = ViewBag.mekanlar as List<Biletix.UI.Areas.Admin.Models.ModelMekan>;
+
+    List<Biletix.UI.Areas.Admin.Models.ModelAltKategori> kategoriler = ViewBag.kategoriler as List<Biletix.UI.Areas.Admin.Models.ModelAltKategori>;
+
+}
+<link href="~/Areas/Admin/Content/Takvim/jquery.datetimepicker.css" rel="stylesheet" />
+
+<br />
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Tüm Gösterilerin Listesi
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                        <div class="row"><div class="col-sm-6"></div><div class="col-sm-6"><div id="dataTables-example_filter" class="dataTables_filter" style="float:right"><label>Ara:<input type="search" class="form-control input-sm" placeholder="" aria-controls="dataTables-example"></label></div></div></div><div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 172px;">Gösteri</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 204px;">Başlangıc Tarihi/Saat</th>
+
+                                    
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110px;">Mekan</th>
+
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110px;">Kategorisi</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110px;">Güncelle</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 172px;">Sil</th>
+                                       
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr id="@item.GosteriId" class="gradeA odd" role="row">
+                                                <td class="sorting_1">@item.GosteriAdi</td>
+                                                <td class="sorting_1">@item.GosteriBaslangıcZamani</td>
+                                                <td class="sorting_1">@item.Mekan.MekanAdi</td>
+                                                <td class="sorting_1">@item.AltKategori.AltKategoriAdi</td>
+                                                <td class="sorting_1"><a href="#" uyeGID="@item.GosteriId" id="Guncelle" onclick="Duzenle(this)">Güncelle</a></td>
+                                                <td class="sorting_1"><a href="#" UyeSID="@item.GosteriId" onclick="Sil(this)">Sil</a></td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-sm-6">
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div style="float:right">
+                                    @Html.PagedListPager(Model, _sayfaNo => Url.Action("Index", "GosteriAdmin", new { SayfaNo = _sayfaNo }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< İlk", LinkToPreviousPageFormat = "< Önceki", LinkToNextPageFormat = "Sonraki >", LinkToLastPageFormat = "Son >>" })
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Gösteri Bilgileri Düzenleme
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form role="form">
+                            <div class="form-group">
+                                <label>Gösteri</label>
+                                <input class="form-control" type="text" id="gosteriAd" value="">
+                                <p class="help-block" id="gosteriAdValidate" style="color:red"></p>
+
+                                <label>Başlama Tarihi</label><br />
+                                <div>
+                                    <div style="float:left">
+                                        <input type="text" id="datetimepicker3" style="">
+                                        <p class="help-block" id="tarihAdValidate" style="color:red"></p>
+
+
+                                    </div>
+                                    <div style="float:left;">
+                                        <div style="margin:auto">
+                                            <label id="tarihSonuc"></label><br />
+                                            <label id="saatSonuc"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <div>
+                                    <div>
+                                        <label>Bilet Türü</label>
+                                        <input type="text" id="biletTuru" class="form-control">
+                                        <p class="help-block" id="biletTuruValidate" style="color:red"></p>
+
+                                    </div>
+                                    <div>
+                                        <label>Bilet Fiyatı</label>
+                                        <div class="form-group input-group">
+                                            <input type="text" id="biletFiyati" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control">
+                                            <span class="input-group-addon">.00</span>
+
+                                        </div>
+                                        <p class="help-block" id="biletFiyatiValidate" style="color:red"></p>
+
+                                    </div>
+                                    <div>
+                                        <label>Bilet Adet</label>
+                                        <input type="text" id="biletAdet" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control">
+                                        <p class="help-block" id="biletAdetValidate" style="color:red"></p>
+
+                                    </div>
+                                    <br />
+                                    <div>
+                                        <button type="button" class="btn btn-default" onclick="FiyatListesineEkle(this)" id="fiyatListesineEkle">Fiyat Listesine Ekle</button>
+                                        <button type="button" class="btn btn-default" onclick="FiyatListesindeSecileniSil()" id="fiyatListesineEkle">Fiyat Listesindejn Çıkar</button>
+                                    </div>
+                                    <div>
+                                        <div class="form-group">
+                                            <label>Fiyat Listesi</label>
+                                            <select id="fiyatListesi" multiple="" class="form-control">
+                                                @* <option>1</option>*@
+
+                                            </select>
+                                            <p class="help-block" id="fiyatListesiAdValidate" style="color:red"></p>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div>
+                                    <div>
+
+                                        <label>Sanatcı</label>
+                                        <input class="form-control" type="text" id="sanatci" value="" />
+                                        <p class="help-block" id="sanatciValidate" style="color:red"></p>
+                                    </div>
+                                    <br />
+                                    <div>
+                                        <button type="button" class="btn btn-default" onclick="SanatciListesineEkle(this)" id="sanatciEkle">Sanatcı Listesine Ekle</button>
+                                        <button type="button" class="btn btn-default" onclick="SanatciListesindenCıkar()" id="sanatciEkle">Sanatcı Listesinenden Çıkar</button>
+                                    </div>
+                                    <div>
+                                        <label>Sanatcı Listesi</label>
+                                        <select id="sanatciListesi" multiple="" class="form-control">
+                                            @* <option>1</option>*@
+
+                                        </select>
+                                        <p class="help-block" id="sanatciListesiAdValidate" style="color:red"></p>
+
+                                    </div>
+
+                                </div>
+
+                                <label>Mekanlar</label>
+                                <select class="form-control" id="mekanlar">
+                                    @foreach (var item in mekanlar)
+                                    {
+                                        <option id="@item.MekanId" value="@item.MekanAdi">@item.MekanAdi</option>
+
+                                    }
+                                </select>
+
+                                <label>Kategorisi</label>
+                                <select class="form-control" id="kategoriler">
+                                    @foreach (var item in kategoriler)
+                                    {
+                                        <option id="@item.AltKategoriId" value="@item.AltKategoriAdi">@item.AltKategoriAdi</option>
+
+                                    }
+                                </select>
+
+                                <label>Açıklama</label>
+                                <textarea class="form-control" rows="3" id="aciklama"></textarea>
+
+                                <label>Not</label>
+                                <textarea class="form-control" rows="3" id="not"></textarea>
+                            </div>
+
+                            <button type="button" class="btn btn-default" onclick="KaydetorGuncelle(this)" id="KaydetOrGuncelleBtn">Kaydet</button>
+                            <button type="reset" class="btn btn-default" onclick="iptal()">İptal</button>
+                            <p class="help-block" id="eksikVarAdValidate" style="color:red"></p>
+
+                        </form>
+                    </div>
+                    <div class="col-lg-6">
+                        <form role="form">
+                            <div>
+                                <label>Mekan Fotoğrafları</label>
+                                <input type="file" id="resimYukle" name="name" value="" multiple />
+                                <p class="help-block" id="mekanFotograflarAdValidate" style="color:red"></p>
+
+                                <output id="listeDiv"></output>
+                            </div>
+                            <div class="clearfix"></div>
+
+                        </form>
+
+
+
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+                    <!-- /.col-lg-6 (nested) -->
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<script src="~/Areas/Admin/Content/Takvim/jquery.js"></script>
+<script src="~/Areas/Admin/Content/Takvim/jquery.datetimepicker.full.js"></script>
+<script>
+    /*
+    window.onerror = function(errorMsg) {
+        $('#console').html($('#console').html()+'<br>'+errorMsg)
+    }*/
+
+    $.datetimepicker.setLocale('en');
+
+    $('#datetimepicker_format').datetimepicker({ value: '2015/04/15 05:03', format: $("#datetimepicker_format_value").val() });
+    console.log($('#datetimepicker_format').datetimepicker('getValue'));
+
+    $("#datetimepicker_format_change").on("click", function (e) {
+        $("#datetimepicker_format").data('xdsoft_datetimepicker').setOptions({ format: $("#datetimepicker_format_value").val() });
+    });
+    $("#datetimepicker_format_locale").on("change", function (e) {
+        $.datetimepicker.setLocale($(e.currentTarget).val());
+    });
+
+    $('#datetimepicker').datetimepicker({
+        dayOfWeekStart: 1,
+        lang: 'en',
+        disabledDates: ['1986/01/08', '1986/01/09', '1986/01/10'],
+        startDate: '1986/01/05'
+    });
+    $('#datetimepicker').datetimepicker({ value: '2015/04/15 05:03', step: 10 });
+
+    $('.some_class').datetimepicker();
+
+    $('#default_datetimepicker').datetimepicker({
+        formatTime: 'H:i',
+        formatDate: 'd.m.Y',
+        //defaultDate:'8.12.1986', // it's my birthday
+        defaultDate: '+03.01.1970', // it's my birthday
+        defaultTime: '10:00',
+        timepickerScrollbar: false
+    });
+
+    $('#datetimepicker10').datetimepicker({
+        step: 5,
+        inline: true
+    });
+    $('#datetimepicker_mask').datetimepicker({
+        mask: '9999/19/39 29:59'
+    });
+
+    $('#datetimepicker1').datetimepicker({
+        datepicker: false,
+        format: 'H:i',
+        step: 5
+    });
+    $('#datetimepicker2').datetimepicker({
+        yearOffset: 222,
+        lang: 'ch',
+        timepicker: false,
+        format: 'd/m/Y',
+        formatDate: 'Y/m/d',
+        minDate: '-1970/01/02', // yesterday is minimum date
+        maxDate: '+1970/01/02' // and tommorow is maximum date calendar
+    });
+    $('#datetimepicker3').datetimepicker({
+        inline: true
+    });
+    $('#datetimepicker4').datetimepicker();
+    $('#open').click(function () {
+        $('#datetimepicker4').datetimepicker('show');
+    });
+    $('#close').click(function () {
+        $('#datetimepicker4').datetimepicker('hide');
+    });
+    $('#reset').click(function () {
+        $('#datetimepicker4').datetimepicker('reset');
+    });
+    $('#datetimepicker5').datetimepicker({
+        datepicker: false,
+        allowTimes: ['12:00', '13:00', '15:00', '17:00', '17:05', '17:20', '19:00', '20:00'],
+        step: 5
+    });
+    $('#datetimepicker6').datetimepicker();
+    $('#destroy').click(function () {
+        if ($('#datetimepicker6').data('xdsoft_datetimepicker')) {
+            $('#datetimepicker6').datetimepicker('destroy');
+            this.value = 'create';
+        } else {
+            $('#datetimepicker6').datetimepicker();
+            this.value = 'destroy';
+        }
+    });
+    var logic = function (currentDateTime) {
+        if (currentDateTime && currentDateTime.getDay() == 6) {
+            this.setOptions({
+                minTime: '11:00'
+            });
+        } else
+            this.setOptions({
+                minTime: '8:00'
+            });
+    };
+    $('#datetimepicker7').datetimepicker({
+        onChangeDateTime: logic,
+        onShow: logic
+    });
+    $('#datetimepicker8').datetimepicker({
+        onGenerate: function (ct) {
+            $(this).find('.xdsoft_date')
+                .toggleClass('xdsoft_disabled');
+        },
+        minDate: '-1970/01/2',
+        maxDate: '+1970/01/2',
+        timepicker: false
+    });
+    $('#datetimepicker9').datetimepicker({
+        onGenerate: function (ct) {
+            $(this).find('.xdsoft_date.xdsoft_weekend')
+                .addClass('xdsoft_disabled');
+        },
+        weekends: ['01.01.2014', '02.01.2014', '03.01.2014', '04.01.2014', '05.01.2014', '06.01.2014'],
+        timepicker: false
+    });
+    var dateToDisable = new Date();
+    dateToDisable.setDate(dateToDisable.getDate() + 2);
+    $('#datetimepicker11').datetimepicker({
+        beforeShowDay: function (date) {
+            if (date.getMonth() == dateToDisable.getMonth() && date.getDate() == dateToDisable.getDate()) {
+                return [false, ""]
+            }
+
+            return [true, ""];
+        }
+    });
+    $('#datetimepicker12').datetimepicker({
+        beforeShowDay: function (date) {
+            if (date.getMonth() == dateToDisable.getMonth() && date.getDate() == dateToDisable.getDate()) {
+                return [true, "custom-date-style"];
+            }
+
+            return [true, ""];
+        }
+    });
+    $('#datetimepicker_dark').datetimepicker({ theme: 'dark' })
+
+
+</script>
+
+
+
+@*<script src="~/Areas/Admin/Content/Takvim/jquery.datetimepicker.js"></script>
+    <script src="~/Areas/Admin/Content/Takvim/jquery.datetimepicker.min.js"></script>*@
+<script>
+    var resimlerYuklendiMi;
+    var gelenResimListesi = new Array();
+    var fiyatListesiDizi = new Array();
+    var sanatciListesiDizi = new Array();
+
+    var gosteriGelen = document.getElementById("gosteriAd");
+    var gosteriBaslangicTarihi;
+    var gosteriBaslangicSaat;
+
+
+    var fiyatListesiSelect = document.getElementById("fiyatListesi");
+    var sanatciListesiSelect = document.getElementById("sanatciListesi");
+
+    var aciklamaGelen = document.getElementById("aciklama");
+    var notGelen = document.getElementById("not");
+
+    var kategorilerSelect = document.getElementById("kategoriler");
+    var secilenKategoriAd = kategorilerSelect[kategorilerSelect.selectedIndex].value;
+
+    var mekanlarselect = document.getElementById("mekanlar");
+    var secilenMekanAd = mekanlarselect[mekanlarselect.selectedIndex].value;
+
+    var resimlerFile = document.getElementById("resimYukle");
+    var mekanFotoListeDiv = document.getElementById("listeDiv");
+
+    var eklenecekTablo = document.getElementById("dataTables-example");
+
+    function iptal() {
+
+        gosteriGelen.value = "";
+        tarihSonuc.innerText = "";
+        saatSonuc.innerText = "";
+        fiyatListesiSelect.innerHTML = "";
+        sanatciListesiSelect.innerHTML = "";
+        aciklamaGelen.innerText = "";
+        notGelen.innerText = "";
+        mekanFotoListeDiv.innerHTML = "";
+        resimlerFile.value = "";
+
+        gosteriAdValidate.innerText = ""
+        tarihAdValidate.innerText = ""
+        fiyatListesiAdValidate.innerText = ""
+        sanatciListesiAdValidate.innerText = ""
+        mekanFotograflarAdValidate.innerText = ""
+        eksikVarAdValidate.innerText = "";
+    }
+
+    function FiyatListesindeSecileniSil() {
+        fiyatListesiSelect.remove(fiyatListesiSelect.selectedIndex);
+    }
+    function SanatciListesindenCıkar() {
+        sanatciListesiSelect.remove(sanatciListesiSelect.selectedIndex)
+    }
+    
+
+    function Sil(gelen) {
+        var siinecekID = gelen.attributes["UyeSID"].value
+
+        $.ajax({
+            url: '@Url.Action("Sil", "GosteriAdmin")',
+            type: 'GET',
+            data: {
+
+                ID: siinecekID
+            },
+            success: function () {
+
+            },
+            error: function () {
+                alert("hata");
+            }
+
+        })
+    }
+
+    function MekanKaydet() {
+        var secilenKategoriID = kategorilerSelect[kategorilerSelect.selectedIndex].id;
+        var secilenKatehoriAd = kategorilerSelect[kategorilerSelect.selectedIndex].value;
+        var secilenMekanID = mekanlarselect[mekanlarselect.selectedIndex].id;
+        var secilenMekanAd = mekanlarselect[mekanlarselect.selectedIndex].value;
+
+        //Validate Kontrolleri
+        if (gosteriGelen.value == "" || tarihSonuc.innerText == "" || saatSonuc.innerText == "" || fiyatListesiSelect.length == 0 || sanatciListesiSelect.length == 0 || resimlerFile.files.length == 0) {
+
+            eksikVarAdValidate.innerText = "Bazı Alanların Doldurulması Zorunludur!"
+
+            if (gosteriGelen.value == 0) {
+                gosteriAdValidate.innerText = "Gösteri Adı Boş geçilemez"
+            }
+            else {
+                gosteriAdValidate.innerText = ""
+            }
+            if (tarihSonuc.innerText == "" || saatSonuc.innerText == "") {
+                tarihAdValidate.innerText = "Tarih veya saat Boş Geçilemez"
+            }
+            else {
+                tarihAdValidate.innerText = ""
+            }
+            if (fiyatListesiSelect.length == 0) {
+                fiyatListesiAdValidate.innerText = "Fiyat Listesi Boş Geçilemez"
+            }
+            else {
+                fiyatListesiAdValidate.innerText = ""
+            }
+            if (sanatciListesiSelect.length == 0) {
+                sanatciListesiAdValidate.innerText = "Sanatcı Listesi Boş Geçilemez"
+            }
+            else {
+                sanatciListesiAdValidate.innerText = ""
+            }
+            if (resimlerFile.files.length == 0) {
+                mekanFotograflarAdValidate.innerText = "Mekan Fotoğrafları Boş Geçilemez"
+            }
+            else {
+                mekanFotograflarAdValidate.innerText = ""
+            }
+        }
+        else {
+            gosteriAdValidate.innerText = ""
+            tarihAdValidate.innerText = ""
+            fiyatListesiAdValidate.innerText = ""
+            sanatciListesiAdValidate.innerText = ""
+            mekanFotograflarAdValidate.innerText = ""
+            eksikVarAdValidate.innerText = "";
+
+            for (var i = 0; i < fiyatListesiSelect.length; i++) {
+
+                var fiyat = fiyatListesiSelect.options.item(i).value.trim().split(':');
+                fiyatListesiDizi[i] = fiyat;
+
+            }
+
+            for (var i = 0; i < sanatciListesiSelect.length; i++) {
+                sanatciListesiDizi[i] = sanatciListesiSelect.options.item(i).text;
+            }
+            $.ajax({
+                url: '@Url.Action("KaydetOrGuncelle", "GosteriAdmin")',
+                type: 'POST',
+                data: {
+                    GosteriAdi: gosteriGelen.value,
+                    StrGosteriBaslangicZamani: gosteriBaslangicTarihi + " " + gosteriBaslangicSaat + ":00",
+                    Aciklama: aciklamaGelen.value,
+                    Not: notGelen.value,
+                    AltKategoriId: parseInt(secilenKategoriID),
+                    MekanId: parseInt(secilenMekanID),
+                    FotograflarModel: gelenResimListesi,
+                    SanatciListesiModel: sanatciListesiDizi,
+                    FiyatListesiModel: fiyatListesiDizi
+
+                },
+                success: function (data) {
+
+                    var eklenenGosteriSatir = '<tr id="' + data.ID + '" class="gradeA odd" role="row"><td class="sorting_1">' + gosteriGelen.value + '</td><td class="sorting_1">' + gosteriBaslangicTarihi + '</td><td class="sorting_1">' + secilenMekanAd + '</td><td class="sorting_1">' + secilenKategoriAd + '</td><td class="sorting_1"><a href="#" uyeGID="' + data.ID + '" id="Guncelle" onclick="Duzenle(this)">Güncelle</a></td><td class="sorting_1"><a href="#" UyeSID="' + data.ID + '" onclick="sil(this)">Sil</a></td></tr>'
+
+                    eklenecekTablo.innerHTML += eklenenGosteriSatir;
+
+
+                    alert("ekleme Başarılı");
+
+
+                    gosteriGelen.value = "";
+                    tarihSonuc.innerText = "";
+                    saatSonuc.innerText = "";
+                    fiyatListesiSelect.innerHTML = "";
+                    sanatciListesiSelect.innerHTML = "";
+                    aciklamaGelen.innerText = "";
+                    notGelen.innerText = "";
+                    mekanFotoListeDiv.innerHTML = "";
+                    resimlerFile.value = "";
+                },
+                error: function () {
+
+                }
+            })
+
+        }
+    }
+
+    function FiyatListesineEkle() {
+        var biletTuruGelen = document.getElementById("biletTuru");
+        var biletFiyatiGelen = document.getElementById("biletFiyati");
+        var biletAdetGelen = document.getElementById("biletAdet");
+        if (biletTuruGelen.value == "" || biletFiyatiGelen.value == "" || biletAdetGelen.value == "") {
+            if (biletTuruGelen.value == "") {
+                biletTuruValidate.innerText = "Bilet Türü Boş Geçilemez"
+            }
+            else {
+                biletTuruValidate.innerText = ""
+            }
+            if (biletFiyatiGelen.value == "") {
+                biletFiyatiValidate.innerText ="Bilet Fiyati Boş Geçilemez"
+            }
+            else {
+                biletFiyatiValidate.innerText =""
+            }
+            if (biletAdetGelen.value == "") {
+                biletAdetValidate.innerText ="Bilet Adet Boş Geçilemez"
+            }
+            else {
+                biletAdetValidate.innerText = ""
+            }
+
+        }
+        else {
+            biletTuruValidate.innerText = ""
+            biletFiyatiValidate.innerText = ""
+            biletAdetValidate.innerText = ""
+
+            var fiyatL = biletTuruGelen.value + ":" + biletFiyatiGelen.value + ":" + biletAdetGelen.value
+            fiyatListesiSelect.innerHTML += '<option value="' + fiyatL + '">' + biletTuruGelen.value + ' - ' + biletAdet.value + ' Adet - ' + biletFiyatiGelen.value + ' TL </option>'
+
+            biletTuruGelen.value = "";
+            biletFiyatiGelen.value = "";
+            biletAdetGelen.value = "";
+        }
+
+    }
+
+    function SanatciListesineEkle() {
+        var sanatciGelen = document.getElementById("sanatci");
+
+        if (sanatciGelen.value == "") {
+            sanatciValidate.innerText ="Sanatci Boş Geçilemez"
+        }
+        else {
+            sanatciValidate.innerText = ""
+
+            sanatciListesi.innerHTML += '<option>' + sanatciGelen.value + '</option>'
+
+            sanatciGelen.value = "";
+        }
+       
+    }
+
+    function TiklananTarih(gelen) {
+        var gun = gelen.attributes["data-date"].value
+        var ay = gelen.attributes["data-month"].value
+        var yil = gelen.attributes["data-year"].value
+
+        tarihSonuc.innerText = gun + "-" + ay + "-" + yil
+        gosteriBaslangicTarihi = gun + "/" + ay + "/" + yil
+        //alert(gun+"-"+ay+"-"+yil)
+    }
+
+    function TiklananSaat(gelen) {
+        var saat = gelen.attributes["data-hour"].value
+
+        saatSonuc.innerText = saat
+        gosteriBaslangicSaat = saat
+    }
+
+    document.getElementById('resimYukle').addEventListener('change', handleFileSelect, false);
+    function handleFileSelect(evt) {
+        mekanFotoListeDiv.innerHTML = ""
+
+        var files = evt.target.files;
+        var hangisi = evt.target.id;
+        for (var i = 0, f; f = files[i]; i++) {
+
+
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+
+            var reader = new FileReader();
+
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    var span = document.createElement('span');
+                    span.innerHTML = ['<img style="width:100px;height:100px;float:left;margin-left:5px" src="', e.target.result,
+                                      '" title="', escape(theFile.name), '"/>'].join('');
+
+                    document.getElementById("listeDiv").insertBefore(span, null);
+                    mekanFotograflarAdValidate.innerText = ""
+                };
+            })(f);
+
+            reader.readAsDataURL(f);
+        }
+    }
+
+    function KaydetorGuncelle(gelen) {
+        ResimleriKaydet()
+
+    }
+
+    function ResimleriKaydet() {
+        if (window.FormData !== undefined) {
+
+            var fileUpload = $("#resimYukle").get(0);
+            var files = fileUpload.files;
+
+
+            var fileData = new FormData();
+
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+
+
+            $.ajax({
+                url: '@Url.Action("ResimKaydet", "GosteriAdmin")',
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                data: fileData,
+                success: function (result) {
+                    //alert(result);
+                    gelenResimListesi = result;
+                    resimlerYuklendiMi = true;
+                    MekanKaydet();
+
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        } else {
+            alert("FormData is not supported.");
+        }
+
+    }
+
+
+</script>

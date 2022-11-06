@@ -1,0 +1,111 @@
+﻿@model Biletix.Entity.Gosteri
+@{
+    ViewBag.Title = "SatinAlmaOncesi";
+    Layout = "~/Views/Shared/_LayoutPageUyeSayfasi.cshtml";
+}
+
+@if (Session["UyeGiris"] == null)
+{
+    <div class="widget widget_review_posts" style="width:1000px">
+        <div class="widget_title">
+            <h4>Bilet Satın Almanız İçin Giriş Yapmalısınız</h4>
+        </div>
+
+        <div class="item" style="float:left">
+            <div class="item_header">
+
+            </div>
+            <div class="item_wrapper" style="border-radius:10px;width:350px">
+                <div class="item_content">
+                    <form action="@Url.Action("SatinAlmaOncesi","GosteriDetay", new {id = Model.GosteriId }) " method="post">
+                        <a>E-Posta Adresi : </a>
+                        <input type="text" name="EMail" value="" style="width:300px" /><br />
+                        <a>Şifre </a>
+                        <input type="password" name="Sifre" value="" style="width:300px" /><br />
+
+                        <input type="submit" name="btnSifreGuncelle" value="Giriş Yap" style="background-color:#349dc9" />
+
+                    </form>
+                </div>
+               
+            </div>
+        </div>
+        <div style="float:left;margin-left:40%;margin-top:-23% ;   background-color:white;width:650px;height:auto;border-radius:10px" class="item_wrapper">
+            <div class="item_content" style="margin-left:5%;margin-top:1%">
+
+                <h4>Kayıt Ol</h4>
+
+                <form action="/Home/KayitOl" method="post">
+                  
+                    <div>
+
+                        <div class="sol" style="float:left;height:auto;width:300px">
+
+                            <a>Adınız : </a>
+                            <input type="text" name="Ad" value="" placeholder="Adınız.." style="width:250px;" /><br />
+                            <a>Soyadınız : </a>
+                            <input type="text" name="Soyad" value="" placeholder="Soyadınız.." style="width:250px;" /><br />
+                            <a>Mail Adresiniz : </a>
+                            <input type="text" name="Email" value="" placeholder="Mail Adresiniz.." style="width:250px;" /><br />
+
+                            <a>Şifreniz : </a>
+                            <input type="password" name="Sifre" value="" placeholder="Şifreniz" style="width:250px;" /><br />
+
+
+                        </div>
+
+                        <div class="sag" style="float:left;height:auto;width:300px">
+
+
+
+                            <a>Şifre (Tekrar) : </a>
+                            <input type="password" name="SifreTekrar" value="" placeholder="Şifre Tekrar" style="width:250px;" /><br />
+                            <a>Adresiniz : </a>
+                            <input type="text" name="Adres" value="" placeholder="Adresiniz.." style="width:250px;" /><br />
+
+                            <a>Yaşadığınız Şehir : </a>
+                            <select style="width:250px;" >
+                                <option>Şehir Seçiniz</option>
+                                @foreach (var item in ViewBag.Sehirler)
+                                {
+                                    <option value="@item.SehirId">@item.SehirAd</option>
+                                }
+                            </select><br />
+
+
+                            @*<li><input type="text" name="Il" value="" placeholder="Sehir.." style="width:250px;" /></li>*@
+
+                            <a>Telefon Numaranız : </a>
+                            <input type="text" name="Telefon" value="" placeholder="Telefon Numaranız.." style="width:250px;" /><br /><br />
+                            <input type="submit" name="btn_giris" value="Kayıt Ol" style="background-color: #349dc9;width:500px;text-align:center;margin-left:-50%" />
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+
+                      
+
+                      
+
+
+                   
+                </form>
+
+                @*<a>Adres : </a>
+                    <input type="text" name="EMail" value="" style="width:300px" /><br />
+                    <a>Telefon : </a>
+                    <input type="text" name="EMail" value="" style="width:300px" /><br />*@
+            </div>
+        </div>
+    </div>
+}
+else
+{
+       @Html.Action("Index", "SatinAl");
+}
+

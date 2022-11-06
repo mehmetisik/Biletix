@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "EtkinlikBaşvuru";
+    Layout = "~/Views/Shared/_LayoutPageUyeSayfasi.cshtml";
+    
+}
+
+<section id="page_wrapper">
+    <div class="container">
+        <div class="row">
+            <!-- ======== SIDEBAR ======== -->
+            <div class="col col_4_of_12 sidebar">
+                <!-- ======== WIDGET - SEARCH ======== -->
+                <!-- ======== WIDGET - SOCIALIZE ======== -->
+
+                <div class="widget widget_review_posts" style="width:1000px;">
+
+                    <form action="/EtkinlikBasvuru/Kaydet" method="post">
+
+
+                    <div class="widget_title" style="width:450px;margin-top:-5%">
+                        <h4>Etkinlik Bilgileri</h4>
+                    </div>
+
+
+                    <div class="item" style="float:left">
+                        <div class="item_header">
+
+                        </div>
+                        <div class="item_wrapper">
+                            <div class="item_content">
+
+                                <a>Bu etkinlik için bir mekan belirlediniz mi? : </a>
+                                <select style="width:350px">
+                                    <option>Evet</option>
+                                    <option>Hayır</option>
+                                </select><br />
+                                <a>Mekan Adı : </a>
+                                <input type="text" name="MekanAdi" value=""
+                                       style="width:350px" /><br />
+                                <a>Adres : </a>
+                                <input type="text" name="Adres" value="" style="width:350px" /><br />
+                                <a>Şehir : </a>
+                                <select name="SehirId" style="width:350px">
+
+                                    @foreach (var item in ViewBag.Sehirler)
+                                    {
+                                        <option name="@item.SehirId" id="@item.SehirId"
+                                                value="@item.SehirId">
+                                            @item.SehirAd
+                                        </option>
+
+                                    }
+
+
+                                </select><br />
+
+
+                                @*<select style="width:350px">
+            <option>İstanbul</option>
+            <option>Ankara</option>
+            <option>Bursa</option>
+            <option>İzmir</option>
+            <option>Manisa</option>
+            <option>Muğla</option>
+        </select><br />*@
+                                <a>Mekanın kapasitesi nedir? : </a>
+                                <input type="text" name="MekanKapasite" value=""
+                                       style="width:350px" /><br />
+                                <a>Kaç bilet satacağınızı düşünüyorsunuz? : </a>
+                                <input type="text" name="BiletSayisi" value=""
+                                       style="width:350px" /><br />
+                                <a>Etkinlik tarihi nedir? : </a>
+                                <input type="text" name="EtkinlikTarihi" value=""
+                                       style="width:350px" /><br />
+                                <a>Ortalama bilet fiyatınız nedir? : </a>
+                                <input type="text" name="BiletFiyati" value=""
+                                       style="width:350px" /><br />
+                               
+                            </div>
+                            @*<div class="content_meta">
+                                    <span class="category"><a href="blog_grid.html">Fashion</a></span>
+                                    <span class="comments"><a href="post_gallery.html">0 Comments</a></span>
+                                </div>*@
+                        </div>
+                    </div>
+
+
+
+                    <div class="widget widget_review_posts" style="float:right">
+                        <div class="widget_title" style="margin-top:-11%">
+                            <h4>Bilgileriniz</h4>
+                        </div>
+
+
+                        <div class="item" style="float:left">
+                            <div class="item_header">
+
+                            </div>
+                            <div class="item_wrapper">
+                                <div class="item_content">
+
+                                    <a>Firmanızın Adı : </a>
+                                    <input type="text" name="FirmaAdi" value="" style="width:350px" /><br />
+                                    <a>Adınız : </a>
+                                    <input type="text" name="Ad" value="" style="width:350px" /><br />
+                                    <a>Soyadınız : </a>
+                                    <input type="text" name="Soyad" value="" style="width:350px" /><br />
+                                    <a>E-Posta Adresiniz : </a>
+                                    <input type="text" name="EMail" value="" style="width:350px" /><br />
+                                    <a>Telefon Numaranız : </a>
+                                    <input type="text" name="Telefon" value="" style="width:350px" /><br />
+                                    <a>Ne tür etkinlikler düzenliyorsunuz? (konser,festival vb) : </a>
+                                    <input type="text" name="EtkinlikTanimi" value=""
+                                           style="width:350px" /><br />
+                            </div>
+                        </div>
+
+
+                    </div>
+                        <div >
+                            <input type="submit" id="Gonder" value="Gönder" style="background-color: #349dc9;color:white;width:450px;height:35px" />
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+
+
+
+
+
+
+</section>
+
+
+

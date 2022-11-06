@@ -1,0 +1,142 @@
+﻿@model Biletix.Entity.Gosteri
+@{
+  
+    List<Biletix.Entity.Gosteri> Resimler = ViewBag.GosteriOneCikanResimler as List<Biletix.Entity.Gosteri>;
+    bool sayac = true;
+}
+
+
+
+<div class="grid_block light" style="background-image: url(demo/grid-block/bg.jpg)">
+    <div class="container">
+        <div class="grid_block_articles">
+
+            @foreach (var item in Resimler)
+            {
+                if (sayac)
+                {
+                    <div class="item">
+                        <div class="inner">
+                            <div class="gradient_shadow"></div>
+
+
+
+                            <a href="#"><img src="/Content/demo/grid-block/1.jpg" alt="Post"></a>
+                            <div class="meta_wrapper">
+                                <div class="star-rating" title="Rated 2.50 out of 5">
+                                    <span style="width: 50%">2.50 out of 5</span>
+                                </div>
+                                <h3><a href="post_gallery.html">@item.GösteriAdi </a></h3>
+                                <div class="content_meta">
+                                    <span class="category"><a href="blog_grid.html">@item.AltKategori.Kategori.KategoriAdi </a></span>
+                                    <span class="comments"><a href="post_gallery.html">7 Comments</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    sayac = false;
+                }
+                else
+                {
+                    <div class="item">
+                        <div class="inner">
+                            <a href="#"><img src="/Content/demo/grid-block/2.jpg" alt="Post"></a>
+                            <div class="meta_wrapper">
+                                <div class="star-rating" title="Rated 4.00 out of 5">
+                                    <span style="width: 80%">4.00 out of 5</span>
+                                </div>
+                                <h3><a href="post_gallery.html">@item.GösteriAdi </a></h3>
+                                <div class="content_meta">
+                                    <span class="category"><a href="blog_grid.html">@item.AltKategori.Kategori.KategoriAdi </a></span>
+                                    <span class="comments"><a href="post_gallery.html">91 Comments</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            }
+
+
+
+
+            @*<div class="item">
+                <div class="inner">
+                    <div class="gradient_shadow"></div>
+                    <a href="#"><img src="/Content/demo/grid-block/1.jpg" alt="Post"></a>
+                    <div class="meta_wrapper">
+                        <div class="star-rating" title="Rated 2.50 out of 5">
+                            <span style="width: 50%">2.50 out of 5</span>
+                        </div>
+                        <h3><a href="post_gallery.html">Mivos Quartet program paired madrigals by Carlo Gesualdo with new works</a></h3>
+                        <div class="content_meta">
+                            <span class="category"><a href="blog_grid.html">Music</a></span>
+                            <span class="comments"><a href="post_gallery.html">7 Comments</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+            @*<div class="item">
+                <div class="inner">
+                    <a href="#"><img src="/Content/demo/grid-block/2.jpg" alt="Post"></a>
+                    <div class="meta_wrapper">
+                        <div class="star-rating" title="Rated 4.00 out of 5">
+                            <span style="width: 80%">4.00 out of 5</span>
+                        </div>
+                        <h3><a href="post_gallery.html">The D.J. Maestros Axwell and Ingrosso Aim to Shake the Rafters</a></h3>
+                        <div class="content_meta">
+                            <span class="category"><a href="blog_grid.html">Travel</a></span>
+                            <span class="comments"><a href="post_gallery.html">91 Comments</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="inner">
+                    <a href="#"><img src="/Content/demo/grid-block/3.jpg" alt="Post"></a>
+                    <div class="meta_wrapper">
+                        <div class="star-rating" title="Rated 1.50 out of 5">
+                            <span style="width: 30%">1.50 out of 5</span>
+                        </div>
+                        <h3><a href="post_gallery.html">Lucy Lawless Brings a Defiant Edge to Salem</a></h3>
+                        <div class="content_meta">
+                            <span class="category"><a href="blog_grid.html">Business</a></span>
+                            <span class="comments"><a href="post_gallery.html">15 Comments</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="inner">
+                    <a href="#"><img src="/Content/demo/grid-block/4.jpg" alt="Post"></a>
+                    <div class="meta_wrapper">
+                        <div class="star-rating" title="Rated 5.00 out of 5">
+                            <span style="width: 100%">5.00 out of 5</span>
+                        </div>
+                        <h3><a href="post_gallery.html">Alexi Kenney at Weill Recital Hall</a></h3>
+                        <div class="content_meta">
+                            <span class="category"><a href="blog_grid.html">Sport</a></span>
+                            <span class="comments"><a href="post_gallery.html">213 Comments</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="inner">
+                    <a href="#"><img src="/Content/demo/grid-block/5.jpg" alt="Post"></a>
+                    <div class="meta_wrapper">
+                        <div class="star-rating" title="Rated 0.50 out of 5">
+                            <span style="width: 10%">0.50 out of 5</span>
+                        </div>
+                        <h3><a href="post_gallery.html">Concord Music Group Buys Vanguard and Sugar Hill</a></h3>
+                        <div class="content_meta">
+                            <span class="category"><a href="blog_grid.html">Fashion</a></span>
+                            <span class="comments"><a href="post_gallery.html">0 Comments</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+    </div>
+</div>

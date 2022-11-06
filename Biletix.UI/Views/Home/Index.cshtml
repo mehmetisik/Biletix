@@ -1,0 +1,1335 @@
+﻿@model Biletix.Entity.Gosteri
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageAnasayfa.cshtml";
+    List<Biletix.Entity.Gosteri> Gosteriler = ViewBag.GosteriOneCikanResimler as List<Biletix.Entity.Gosteri>;
+
+}
+
+
+
+@Html.Partial("~/Views/Home/_OneCikanResimler.cshtml") @*Anasayfa Üst Tarafta bulunan resimler _OneCikanResimler partial yolu*@
+
+<!-- ======== BREAKING NEWS ======== -->
+@Html.Partial("~/Views/Home/_YakindakiGosteriHaber.cshtml")  @*Öne çıkan resimlerin altında ki kısım*@
+
+<!-- ======== SECTION ======== -->
+<section id="page_wrapper">
+    <div class="container">
+        <div class="row">
+            <!-- ======== SIDEBAR ======== -->
+            <div class="col col_4_of_12 sidebar">
+                <!-- ======== WIDGET - SEARCH ======== -->
+                <div class="widget widget_search">
+                    <div class="widget_title">
+                        <h4>Arama Yap</h4>
+                    </div>
+                    <form class="search_form">
+                        <input type="search" class="search_field" placeholder="Gösteri Adı Giriniz..">
+                    </form>
+                </div>
+                <!-- ======== WIDGET - SOCIALIZE ======== -->
+
+                <div class="widget widget_review_posts">
+                    <div class="widget_title">
+                        <h4>Öne Çıkanlar</h4>
+                    </div>
+                    <div class="item">
+                        <div class="item_header">
+                            <div class="rate_box">
+                                <div class="image"><img src="/Content/demo/post-list/5.jpg" alt="Image"></div>
+                                <div class="info">
+                                    <div class="score">4.50</div>
+                                    <div class="summary">Awesome</div>
+                                </div>
+                            </div>
+                            <div class="rate_stars">
+                                <div class="star-rating" title="Rated 4.50 out of 5">
+                                    <span style="width: 90%">4.50 out of 5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item_wrapper">
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">Sarah Manguso Offers Crumbs Relating to Her Diary</a></h4>
+                            </div>
+                            <div class="content_meta">
+                                <span class="category"><a href="blog_grid.html">Movies</a></span>
+                                <span class="comments"><a href="post_gallery.html">654 Comments</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item_header">
+                            <div class="rate_box">
+                                <div class="image"><img src="/Content/demo/post-list/1.jpg" alt="Image"></div>
+                                <div class="info">
+                                    <div class="score">3.00</div>
+                                    <div class="summary">Good</div>
+                                </div>
+                            </div>
+                            <div class="rate_stars">
+                                <div class="star-rating" title="Rated 3.00 out of 5">
+                                    <span style="width: 60%">3.00 out of 5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item_wrapper">
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">In Performance: Tonya Pinkins and Dianne Wiest of 'Rasheeda Speaking'</a></h4>
+                            </div>
+                            <div class="content_meta">
+                                <span class="category"><a href="blog_grid.html">Travel</a></span>
+                                <span class="comments"><a href="post_gallery.html">14 Comments</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item_header">
+                            <div class="rate_box">
+                                <div class="image"><img src="/Content/demo/post-list/3.jpg" alt="Image"></div>
+                                <div class="info">
+                                    <div class="score">1.50</div>
+                                    <div class="summary">Very bad</div>
+                                </div>
+                            </div>
+                            <div class="rate_stars">
+                                <div class="star-rating" title="Rated 1.50 out of 5">
+                                    <span style="width: 30%">1.50 out of 5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item_wrapper">
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">'Better Call Saul' Recap: Of Sound Mind</a></h4>
+                            </div>
+                            <div class="content_meta">
+                                <span class="category"><a href="blog_grid.html">Fashion</a></span>
+                                <span class="comments"><a href="post_gallery.html">0 Comments</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="widget widget_calendar">
+                    <div class="widget_title">
+                        <h4>Takvim</h4>
+                    </div>
+                    <div id="calendar_wrap">
+                        <table id="wp-calendar">
+                            <caption>Haziran 2016</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col" title="Monday">Pt</th>
+                                    <th scope="col" title="Tuesday">Sa</th>
+                                    <th scope="col" title="Wednesday">Ça</th>
+                                    <th scope="col" title="Thursday">Pe</th>
+                                    <th scope="col" title="Friday">Cu</th>
+                                    <th scope="col" title="Saturday">Ct</th>
+                                    <th scope="col" title="Sunday">Pz</th>
+                                </tr>
+                            </thead>
+
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" id="prev"><a href="#">« Jan</a></td>
+                                    <td class="pad">&nbsp;</td>
+                                    <td colspan="3" id="next"><a href="#">Sep »</a></td>
+                                </tr>
+                            </tfoot>
+
+                            <tbody>
+                                <tr>
+                                    <td colspan="6" class="pad">&nbsp;</td>
+                                    <td><a href="#" title="Hello world!">1</a></td>
+                                </tr>
+                                <tr>
+                                    <td id="today"><a href="#" title="Video post Gallery">2</a></td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>11</td>
+                                    <td>12</td>
+                                    <td>13</td>
+                                    <td>14</td>
+                                    <td>15</td>
+                                </tr>
+                                <tr>
+                                    <td>16</td>
+                                    <td>17</td>
+                                    <td>18</td>
+                                    <td>19</td>
+                                    <td>20</td>
+                                    <td>21</td>
+                                    <td>22</td>
+                                </tr>
+                                <tr>
+                                    <td>23</td>
+                                    <td>24</td>
+                                    <td>25</td>
+                                    <td>26</td>
+                                    <td>27</td>
+                                    <td>28</td>
+                                    <td>29</td>
+                                </tr>
+                                <tr>
+                                    <td>30</td>
+                                    <td>31</td>
+                                    <td class="pad" colspan="5">&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+              
+
+
+
+
+
+                @*<div class="widget widget_socialize">
+                        <div class="widget_title">
+                            <h4>Sosyal Ağlarımız</h4>
+                        </div>
+                        <div class="soc_box">
+                            <div class="icon facebook"><i class="fa fa-facebook"></i></div>
+                            <div class="soc_card">
+                                <a href="https://www.facebook.com/codeostudio" target="_blank">
+                                    <div class="number">50.359</div>
+                                    <div class="text">Followers</div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="soc_box">
+                            <div class="icon twitter"><i class="fa fa-twitter"></i></div>
+                            <div class="soc_card">
+                                <a href="https://twitter.com/codeostudio" target="_blank">
+                                    <div class="number">62.154</div>
+                                    <div class="text">Fans</div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="soc_box">
+                            <div class="icon dribbble"><i class="fa fa-dribbble"></i></div>
+                            <div class="soc_card">
+                                <a href="https://dribbble.com/codeostudio" target="_blank">
+                                    <div class="number">9.754</div>
+                                    <div class="text">Subscribers</div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="soc_box">
+                            <div class="icon google"><i class="fa fa-google-plus"></i></div>
+                            <div class="soc_card">
+                                <a href="#">
+                                    <div class="number">12.098</div>
+                                    <div class="text">People</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>*@
+                <!-- ======== WIDGET - REVIEW POSTS ======== -->
+                <!-- ======== WIDGET - LATEST COMMENTS ======== -->
+                @*<div class="widget widget_latest_comments">
+                        <div class="widget_title">
+                            <h4>Latest comments</h4>
+                        </div>
+                        <div class="item">
+                            <div class="item_header">
+                                <img src="/Content/demo/avatars/1.jpg" alt="Avatar">
+                            </div>
+                            <div class="item_wrapper">
+                                <div class="author"><a href="#">Michelle MacLaren</a> <span>says:</span></div>
+                                <div class="comment">In Reif Larsen's 'I Am Radar,' Odyssey of Exploding Particles [...]</div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item_header">
+                                <img src="/Content/demo/avatars/2.jpg" alt="Avatar">
+                            </div>
+                            <div class="item_wrapper">
+                                <div class="author"><a href="#">Sam Catlin</a> <span>says:</span></div>
+                                <div class="comment">Review: In 'Addicted to the Spotlight,' Mark Nadler Is All Hot-Wired Energy [...]</div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item_header">
+                                <img src="/Content/demo/avatars/3.jpg" alt="Avatar">
+                            </div>
+                            <div class="item_wrapper">
+                                <div class="author"><a href="#">Bronwen Hughes</a> <span>says:</span></div>
+                                <div class="comment">The entertainer wants nothing less than to knock your socks off and break your heart at the same time in his new cabaret show at 54 Below in New York [...]</div>
+                            </div>
+                        </div>
+                    </div>*@
+                <!-- ======== WIDGET - LATEST POSTS ======== -->
+                <div class="widget widget_latest_posts">
+                    <div class="widget_title">
+                        <h4>Yakındaki Gösteriler</h4>
+                    </div>
+                    <div class="item">
+                        <div class="item_header">
+                            <a href="post_gallery.html">
+                                <img src="/Content/demo/post-list/6.jpg" alt="Image">
+                            </a>
+                        </div>
+                        <div class="item_wrapper">
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">'Justified' Recap: What, Exactly, Is Ava's Plan?</a></h4>
+                            </div>
+                            <div class="content_meta">
+                                <span class="category"><a href="blog_grid.html">Business</a></span>
+                                <span class="comments"><a href="post_gallery.html">95 Comments</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item_header">
+                            <a href="post_gallery.html">
+                                <img src="/Content/demo/post-list/9.jpg" alt="Image">
+                            </a>
+                        </div>
+                        <div class="item_wrapper">
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">New York City Plans to Study the Diversity of Its Group</a></h4>
+                            </div>
+                            <div class="content_meta">
+                                <span class="category"><a href="blog_grid.html">Sport</a></span>
+                                <span class="comments"><a href="post_gallery.html">325 Comments</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item_header">
+                            <a href="post_gallery.html">
+                                <img src="/Content/demo/post-list/8.jpg" alt="Image">
+                            </a>
+                        </div>
+                        <div class="item_wrapper">
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">Simon Rattle to Return to His Roots, Taking Over the London Symphony</a></h4>
+                            </div>
+                            <div class="content_meta">
+                                <span class="category"><a href="blog_grid.html">Music</a></span>
+                                <span class="comments"><a href="post_gallery.html">5 Comments</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item_header">
+                            <a href="post_gallery.html">
+                                <img src="/Content/demo/post-list/10.jpg" alt="Image">
+                            </a>
+                        </div>
+                        <div class="item_wrapper">
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">Review: Eberhardt's Fierce Ride, in 'The Nomad'</a></h4>
+                            </div>
+                            <div class="content_meta">
+                                <span class="category"><a href="blog_grid.html">Fashion</a></span>
+                                <span class="comments"><a href="post_gallery.html">0 Comments</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ======== WIDGET - BANNER 300X250 ======== -->
+                @*<div class="widget widget_banner_300x250">
+                        <div class="widget_title">
+                            <h4>Banner</h4>
+                        </div>
+                        <div class="banner">
+                            <a href="http://themeforest.net/?ref=CodeoStudio" target="_blank"><img src="/Content/demo/banners/300x250.jpg" alt="GoodStart"></a>
+                        </div>
+                    </div>*@
+                <!-- ======== WIDGET - TIMELINE ======== -->
+                <div class="widget widget_timeline">
+                    <div class="widget_title">
+                        <h4>Yaklaşan Gösteriler</h4>
+                    </div>
+                    <!-- ======== ITEM ======== -->
+                    <div class="item">
+                        <div class="item_date">
+                            <div class="date">28</div>
+                            <div class="month">May</div>
+                        </div>
+                        <div class="item_content">
+                            <h4><a href="post_gallery.html">Ratmansky's New 'Sleeping Beauty' Looks Back to 1890</a></h4>
+                            <div class="content_meta">
+                                <span class="category"><a href="blog_grid.html">Business</a></span>
+                                <span class="author"><a href="page_author.html">Michelle M.</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ======== ITEM ======== -->
+                    <div class="item">
+                        <div class="item_date">
+                            <div class="date">14</div>
+                            <div class="month">Sep</div>
+                        </div>
+                        <div class="item_content">
+                            <h4><a href="post_gallery.html">Tatiana Trouve Unwinds History in Public Art Project</a></h4>
+                            <div class="content_meta">
+                                <span class="category"><a href="blog_grid.html">Sport</a></span>
+                                <span class="author"><a href="page_author.html">Bronwen H.</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ======== ITEM ======== -->
+                    <div class="item">
+                        <div class="item_date">
+                            <div class="date">9</div>
+                            <div class="month">Dec</div>
+                        </div>
+                        <div class="item_content">
+                            <h4><a href="post_gallery.html">Review: 'Lucky Alan,' Jonathan Lethem's Dreamlike Tales of Seclusion</a></h4>
+                            <div class="content_meta">
+                                <span class="category"><a href="blog_grid.html">Music</a></span>
+                                <span class="author"><a href="page_author.html">Thomas S.</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ======== WIDGET - BANNER 125X125 ======== -->
+                <div class="widget widget_banner_125x125">
+                    <div class="widget_title">
+                        <h4>Sponsorlar</h4>
+                    </div>
+                    <div class="banners">
+                        <div class="banner">
+                            <a href="http://themeforest.net/?ref=CodeoStudio" target="_blank">
+                                <img src="~/Content/img/turkcell.jpg" alt="GoodStart">
+                            </a>
+                        </div>
+                        <div class="banner">
+                            <a href="http://themeforest.net/?ref=CodeoStudio" target="_blank">
+                                <img src="~/Content/img/avea.jpg" alt="GoodStart">
+                            </a>
+                        </div>
+                        <div class="banner">
+                            <a href="http://themeforest.net/?ref=CodeoStudio" target="_blank">
+                                <img src="~/Content/img/samsung.jpeg" alt="GoodStart">
+                            </a>
+                        </div>
+                        <div class="banner">
+                            <a href="http://themeforest.net/?ref=CodeoStudio" target="_blank">
+                                <img src="~/Content/img/vodafone.jpeg" alt="GoodStart">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ======== WIDGET - TAGS ======== -->
+                @*<div class="widget widget_tag_cloud">
+                        <div class="widget_title">
+                            <h4>Tags</h4>
+                        </div>
+                        <div class="tagcloud">
+                            <a href="#">design</a>
+                            <a href="#">photography</a>
+                            <a href="#">development</a>
+                            <a href="#">wordpress</a>
+                            <a href="#">css</a>
+                            <a href="#">html</a>
+                            <a href="#">code</a>
+                            <a href="#">travel</a>
+                            <a href="#">fashion</a>
+                            <a href="#">business</a>
+                            <a href="#">life</a>
+                            <a href="#">fashion</a>
+                            <a href="#">video</a>
+                            <a href="#">art</a>
+                            <a href="#">css</a>
+                            <a href="#">javascript</a>
+                        </div>
+                    </div>*@
+                <!-- ======== WIDGET - CATEGORIES ======== -->
+                @*<div class="widget widget_categories">
+                        <div class="widget_title">
+                            <h4>Categories</h4>
+                        </div>
+                        <ul>
+                            <li><a href="#">Sport</a></li>
+                            <li><a href="#">Travel</a></li>
+                            <li><a href="#">Photography</a></li>
+                        </ul>
+                    </div>*@
+                <!-- ======== WIDGET - RECENT COMMENTS ======== -->
+                @*<div class="widget widget_recent_comments">
+                        <div class="widget_title">
+                            <h4>Recent comments</h4>
+                        </div>
+                        <ul>
+                            <li><span><a href="#">Mr WordPress</a></span> on <a href="#">Hello world!</a></li>
+                            <li><span><a href="#">Thomas Schnauz</a></span> on <a href="#">Before Oscar Night, Playing the Odds With a Bettor's Set</a></li>
+                        </ul>
+                    </div>*@
+            </div>
+
+
+
+
+
+
+
+            <!-- ======== MAIN CONTENT ======== -->
+            <div class="col col_8_of_12 main_content">
+
+
+                @*--------------------------------------*@
+                @*Deneme bura partial olacak*@
+
+
+                <div class="widget widget_review_posts">
+                    <div class="widget_title">
+                        <h4>Öne Çıkanlar</h4>
+                    </div>
+
+                    @foreach (var item in Gosteriler)
+                    {
+                        <div class="item">
+                            <div class="item_header">
+                                <div class="rate_box">
+                                    <div class="image"><img src="/Content/demo/post-list/5.jpg" alt="Image"></div>
+                                    <div class="info">
+                                        <div class="score">@item.GosteriBaslangıcZamani.Day </div>
+
+                                       @switch (item.GosteriBaslangıcZamani.Month)
+                                       {
+                                           case 1:
+                                            <div class="summary">Ocak</div>
+                                               break;
+
+                                           case 2:
+                                            <div class="summary">Şubat</div>
+                                               break;
+                                           case 3:
+                                            <div class="summary">Mart</div>
+                                               break;
+                                           case 4:
+                                            <div class="summary">Nisan</div>
+                                               break;
+                                           case 5:
+                                            <div class="summary">Mayıs</div>
+                                               break;
+                                           case 6:
+                                            <div class="summary">Haziran</div>
+                                               break;
+                                           case 7:
+                                            <div class="summary">Temuuz</div>
+                                               break;
+                                           case 8:
+                                            <div class="summary">Ağustos</div>
+                                               break;
+                                           case 9:
+                                            <div class="summary">Eylül</div>
+                                               break;
+                                           case 10:
+                                            <div class="summary">Ekim</div>
+                                               break;
+                                           case 11:
+                                            <div class="summary">Kasım</div>
+                                               break;
+                                           case 12:
+                                            <div class="summary">Aralık</div>
+                                               break;
+
+
+                                           default:
+                                               break;
+                                       }
+
+                                        
+                                    </div>
+                                </div>
+                                @*<div class="rate_stars">
+                                    <div class="star-rating" title="Rated 4.50 out of 5">
+                                        <span style="width: 90%">4.50 out of 5</span>
+                                    </div>
+                                </div>*@
+                            </div>
+                            <div class="item_wrapper">
+                                <div class="item_content">
+                                    <h4><a href="@Url.Action("Index","GosteriDetay", new { id = item.GosteriId })">@item.GösteriAdi</a></h4>
+                                </div>
+                               
+                                <div class="content_meta">
+                                    <span class="category"><a href="blog_grid.html">@item.Mekan.MekanAdi </a></span>
+                                   
+                                </div>
+                                <div class="content_meta">
+                                    <span class="category"><a href="blog_grid.html">@item.AltKategori.Kategori.KategoriAdi</a></span>
+                                    <span class="comments"><a href="post_gallery.html">654 Comments</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                    
+                 
+                   
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @*<div class="block_title">
+                    <h2>Timeline posts</h2>
+                    <a href="#" class="view_all">View all <i class="fa fa-folder-open"></i></a>
+                </div>
+
+
+                <div class="timeline_list">
+                    <!-- ======== POST ======== -->
+                    <div class="item">
+                        <div class="item_date">
+                            <div class="date">28</div>
+                            <div class="month">May</div>
+                        </div>
+                        <div class="item_content">
+                            <h4><a href="@Url.Action("Index","GosteriDetay")">Review: Bad Faith, a Dr. Paul A. Offit Book on Religion and Modern Medicine</a></h4>
+                            <div class="content_meta">
+                                <span class="date"><a href="blog_grid.html">14:56 AM</a></span>
+                                <span class="category"><a href="blog_grid.html">Business</a></span>
+                                <span class="author"><a href="page_author.html">Michelle M.</a></span>
+                            </div>
+                        </div>
+                        <div class="item_content">
+                            <h4><a href="post_gallery.html">In his latest book, Dr. Offit takes aim at those who use religious reasoning to disavow lifesaving medical treatments</a></h4>
+                            <div class="content_meta">
+                                <span class="date"><a href="blog_grid.html">19:05 AM</a></span>
+                                <span class="category"><a href="blog_grid.html">Travel</a></span>
+                                <span class="author"><a href="page_author.html">Charles H.</a></span>
+                            </div>
+                        </div>
+                        <div class="item_content">
+                            <h4><a href="post_gallery.html">Review: Bad Faith, a Dr. Paul A. Offit Book on Religion and Modern Medicine</a></h4>
+                            <div class="content_meta">
+                                <span class="date"><a href="blog_grid.html">14:56 AM</a></span>
+                                <span class="category"><a href="blog_grid.html">Business</a></span>
+                                <span class="author"><a href="page_author.html">Michelle M.</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ======== POST ======== -->
+                    <div class="item">
+                        <div class="item_date">
+                            <div class="date">29</div>
+                            <div class="month">May</div>
+                        </div>
+                        <div class="item_content">
+                            <h4><a href="post_gallery.html">Ratmansky's New 'Sleeping Beauty' Looks Back to 1890</a></h4>
+                            <div class="content_meta">
+                                <span class="date"><a href="blog_grid.html">19:05 AM</a></span>
+                                <span class="category"><a href="blog_grid.html">Business</a></span>
+                                <span class="author"><a href="page_author.html">Michelle M.</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ======== POST ======== -->
+                    <div class="item">
+                        <div class="item_date">
+                            <div class="date">1</div>
+                            <div class="month">Sep</div>
+                        </div>
+                        <div class="item_content">
+                            <h4><a href="post_gallery.html">The New York Philharmonic will anoint a new music director in 2017. But who? Classical music critics for The Times posit some possibilities.</a></h4>
+                            <div class="content_meta">
+                                <span class="date"><a href="blog_grid.html">6:45 PM</a></span>
+                                <span class="category"><a href="blog_grid.html">Fashion</a></span>
+                                <span class="author"><a href="page_author.html">Michelle M.</a></span>
+                            </div>
+                        </div>
+                        <div class="item_content">
+                            <h4><a href="post_gallery.html">No Classified Clinton Email? Some Experts Are Skeptical</a></h4>
+                            <div class="content_meta">
+                                <span class="date"><a href="blog_grid.html">6:45 PM</a></span>
+                                <span class="category"><a href="blog_grid.html">Fashion</a></span>
+                                <span class="author"><a href="page_author.html">Michelle M.</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+                @*-------------------------------------------*@
+
+
+
+
+                <!-- ======== BLOCK WITH TABS ======== -->
+                <div class="block_with_tabs">
+                    <!-- ======== BLOCK TITLE ======== -->
+                    <div class="block_title">
+                        <ul>
+                            <li><a href="#tab-x1">Hot Tickets</a></li>
+                            <li><a href="#tab-x2">Yeni Satışta & Yakında</a></li>
+                        </ul>
+                    </div>
+                    <!-- ======== BLOCK TABS ======== -->
+                    <div id="tab-x1">
+                        <div class="row">
+                            <div class="col col_6_of_12">
+                                <!-- ======== TEXT ARTICLE LIST ======== -->
+                                <div class="text_article_list">
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_content">
+                                                <h4><a href="post_gallery.html">Mivos Quartet program paired madrigals by Carlo Gesualdo with new works</a></h4>
+                                            </div>
+                                            <div class="content_meta">
+                                                <span class="date">August 27, 2015</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_content">
+                                                <h4><a href="post_gallery.html">Show at Venus Over Manhattan, with works from the collection of the art dealer Alla</a></h4>
+                                            </div>
+                                            <div class="content_meta">
+                                                <span class="date">September 9, 2015</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_content">
+                                                <h4><a href="post_gallery.html">This tongue-in-cheek nighttime soap about a make-believe decadent British royal family</a></h4>
+                                            </div>
+                                            <div class="content_meta">
+                                                <span class="date">May 28, 2015</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <a href="blog_grid.html" class="btn">Show all posts</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col_6_of_12">
+                                <!-- ======== TEXT ARTICLE LIST ======== -->
+                                <div class="text_article_list">
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_content">
+                                                <h4><a href="post_gallery.html">The renamed company began its run at Lincoln Center with live music and four</a></h4>
+                                            </div>
+                                            <div class="content_meta">
+                                                <span class="date">August 27, 2015</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_content">
+                                                <h4><a href="post_gallery.html">Art Institute of Chicago has unearthed the names of hundreds of underappreciated makers</a></h4>
+                                            </div>
+                                            <div class="content_meta">
+                                                <span class="date">September 9, 2015</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_content">
+                                                <h4><a href="post_gallery.html">European Fine Art Fair in Maastricht, the Netherlands, collaborated to recreate</a></h4>
+                                            </div>
+                                            <div class="content_meta">
+                                                <span class="date">May 28, 2015</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <a href="blog_grid.html" class="btn">Show all posts</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-x2">
+                        <div class="row">
+                            <div class="col col_6_of_12">
+                                <!-- ======== TEXT ARTICLE LIST ======== -->
+                                <div class="text_article_list">
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_content">
+                                                <h4><a href="post_gallery.html">The renamed company began its run at Lincoln Center with live music and four</a></h4>
+                                            </div>
+                                            <div class="content_meta">
+                                                <span class="date">August 27, 2015</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_content">
+                                                <h4><a href="post_gallery.html">Art Institute of Chicago has unearthed the names of hundreds of underappreciated makers</a></h4>
+                                            </div>
+                                            <div class="content_meta">
+                                                <span class="date">September 9, 2015</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_content">
+                                                <h4><a href="post_gallery.html">European Fine Art Fair in Maastricht, the Netherlands, collaborated to recreate</a></h4>
+                                            </div>
+                                            <div class="content_meta">
+                                                <span class="date">May 28, 2015</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_content">
+                                                <h4><a href="post_gallery.html">Show at Venus Over Manhattan, with works from the collection of the art dealer Alla</a></h4>
+                                            </div>
+                                            <div class="content_meta">
+                                                <span class="date">September 9, 2015</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <a href="blog_grid.html" class="btn">Show all posts</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col_6_of_12">
+                                <!-- ======== TEXT ARTICLE LIST ======== -->
+                                <div class="text_article_list">
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_content">
+                                                <h4><a href="post_gallery.html">Mivos Quartet program paired madrigals by Carlo Gesualdo with new works</a></h4>
+                                            </div>
+                                            <div class="content_meta">
+                                                <span class="date">August 27, 2015</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_content">
+                                                <h4><a href="post_gallery.html">Show at Venus Over Manhattan, with works from the collection of the art dealer Alla</a></h4>
+                                            </div>
+                                            <div class="content_meta">
+                                                <span class="date">September 9, 2015</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_content">
+                                                <h4><a href="post_gallery.html">This tongue-in-cheek nighttime soap about a make-believe decadent British royal family</a></h4>
+                                            </div>
+                                            <div class="content_meta">
+                                                <span class="date">May 28, 2015</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item_wrapper">
+                                            <div class="item_content">
+                                                <h4><a href="post_gallery.html">Art Institute of Chicago has unearthed the names of hundreds of underappreciated makers</a></h4>
+                                            </div>
+                                            <div class="content_meta">
+                                                <span class="date">September 9, 2015</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <a href="blog_grid.html" class="btn">Show all posts</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ======== CONTENT BANNER======== -->
+                <div class="content_banner">
+                    @*<div class="banner">
+                            <a href="http://themeforest.net/?ref=CodeoStudio" target="_blank">
+                                <img src="/Content/demo/banners/468x60.jpg" alt="GoodStart">
+                            </a>
+                        </div>*@
+                </div>
+                @*<!-- ======== BLOCK TITLE ======== -->
+                    <div class="block_title">
+                        <h2>Featured videos</h2>
+                        <a href="#" class="view_all">View all <i class="fa fa-folder-open"></i></a>
+                    </div>
+                    <!-- ======== VIDEO LIST #1 ======== -->
+                    <div class="video_list_1">
+                        <div class="item">
+                            <div class="inner">
+                                <div class="label">Label</div>
+                                <div class="item_header">
+                                    <div class="video_icon"><i class="fa fa-play"></i></div>
+                                    <a href="post_gallery.html">
+                                        <img src="/Content/demo/video-list/1.jpg" alt="Image">
+                                    </a>
+                                </div>
+                                <div class="item_wrapper">
+                                    <div class="item_content">
+                                        <h4><a href="post_gallery.html">In his new book of essays, the author examines the clashes and convergence of cultures in the three cities he has called home — Lahore, New York and London.</a></h4>
+                                    </div>
+                                    <div class="content_meta">
+                                        <span class="time">4:16 min</span>
+                                    </div>
+                                </div>
+                                <div class="transition_line"></div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="inner">
+                                <div class="item_header">
+                                    <div class="video_icon"><i class="fa fa-play"></i></div>
+                                    <a href="post_gallery.html">
+                                        <img src="/Content/demo/video-list/2.jpg" alt="Image">
+                                    </a>
+                                    <h4><a href="post_gallery.html">In his new book of essays, the author examines the clashes and convergence of cultures in the three cities he has called home — Lahore, New York and London.</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="inner">
+                                <div class="item_header">
+                                    <div class="video_icon"><i class="fa fa-play"></i></div>
+                                    <a href="post_gallery.html">
+                                        <img src="/Content/demo/video-list/3.jpg" alt="Image">
+                                    </a>
+                                    <h4><a href="post_gallery.html">Mr. Simon left the show fourth season in a lucrative</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="inner">
+                                <div class="item_header">
+                                    <div class="video_icon"><i class="fa fa-play"></i></div>
+                                    <a href="post_gallery.html">
+                                        <img src="/Content/demo/video-list/4.jpg" alt="Image">
+                                    </a>
+                                    <h4><a href="post_gallery.html">Mr. Simon left the show fourth season in a lucrative</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="inner">
+                                <div class="item_header">
+                                    <div class="video_icon"><i class="fa fa-play"></i></div>
+                                    <a href="post_gallery.html">
+                                        <img src="/Content/demo/video-list/5.jpg" alt="Image">
+                                    </a>
+                                    <h4><a href="post_gallery.html">Mr. Simon left the show fourth season in a lucrative</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                <!-- ======== CONTENT BANNER======== -->
+                <div class="content_banner">
+                    @*<div class="banner">
+                            <a href="http://themeforest.net/?ref=CodeoStudio" target="_blank">
+                                <img src="/Content/demo/banners/468x60.jpg" alt="GoodStart">
+                            </a>
+                        </div>*@
+                </div>
+                <div class="row">
+                    <div class="col col_6_of_12">
+                        <!-- ======== BLOCK TITLE ======== -->
+                        <div class="block_title">
+                            <h2>Fashion</h2>
+                            <a href="#" class="view_all">View all <i class="fa fa-folder-open"></i></a>
+                        </div>
+                        <!-- ======== ARTICLE LIST BIG 1 ======== -->
+                        <div class="article_list_big_1">
+                            <div class="thumb_wrapper">
+                                <div class="big_calendar_box">
+                                    <div class="date">22</div>
+                                    <div class="month">Sep</div>
+                                </div>
+                                <div class="gradient_shadow"></div>
+                                <a href="demo/blog-post/11.jpg" class="magnificPopupImage" title="Caption goes here">
+                                    <img src="/Content/demo/blog-post/11.jpg" alt="Image">
+                                </a>
+                                <div class="meta_wrapper">
+                                    <div class="star-rating" title="Rated 2.50 out of 5">
+                                        <span style="width: 50%">2.50 out of 5</span>
+                                    </div>
+                                    <h3><a href="post_gallery.html">Women Aim for Peace in Korea With Walk Across DMZ </a></h3>
+                                    <div class="content_meta">
+                                        <span class="category"><a href="blog_grid.html">Business</a></span>
+                                        <span class="comments"><a href="post_gallery.html">15 Comments</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content_wrapper">
+                                <p>Efficiently build premier users for bleeding-edge mindshare. Intrinsicly extend collaborative content after one-to-one markets...</p>
+                            </div>
+                        </div>
+                        <!-- ======== SMALL ARTICLE LIST ======== -->
+                        <div class="small_article_list">
+                            <div class="item">
+                                <div class="item_header">
+                                    <a href="post_gallery.html">
+                                        <img src="/Content/demo/post-list/7.jpg" alt="Image">
+                                    </a>
+                                </div>
+                                <div class="item_wrapper">
+                                    <div class="item_content">
+                                        <h4><a href="post_gallery.html">Ratmansky's New 'Sleeping Beauty' Looks Back to 1890</a></h4>
+                                    </div>
+                                    <div class="content_meta">
+                                        <span class="category"><a href="blog_grid.html">Sport</a></span>
+                                        <span class="comments"><a href="post_gallery.html">325 Comments</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="item_header">
+                                    <a href="post_gallery.html">
+                                        <img src="/Content/demo/post-list/2.jpg" alt="Image">
+                                    </a>
+                                </div>
+                                <div class="item_wrapper">
+                                    <div class="item_content">
+                                        <h4><a href="post_gallery.html">An Appraisal: The Poet Philip Levine, an Outsider Archiving the Forgotten</a></h4>
+                                    </div>
+                                    <div class="content_meta">
+                                        <span class="category"><a href="blog_grid.html">Sport</a></span>
+                                        <span class="comments"><a href="post_gallery.html">325 Comments</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="item_header">
+                                    <a href="post_gallery.html">
+                                        <img src="/Content/demo/post-list/9.jpg" alt="Image">
+                                    </a>
+                                </div>
+                                <div class="item_wrapper">
+                                    <div class="item_content">
+                                        <h4><a href="post_gallery.html">An Appraisal: The Poet Philip Levine, an Outsider Archiving the Forgotten</a></h4>
+                                    </div>
+                                    <div class="content_meta">
+                                        <span class="category"><a href="blog_grid.html">Sport</a></span>
+                                        <span class="comments"><a href="post_gallery.html">325 Comments</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <a href="blog_grid.html" class="btn">Show all posts</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col_6_of_12">
+                        <!-- ======== BLOCK TITLE ======== -->
+                        <div class="block_title">
+                            <h2>Travel</h2>
+                            <a href="#" class="view_all">View all <i class="fa fa-folder-open"></i></a>
+                        </div>
+                        <!-- ======== ARTICLE LIST BIG 1 ======== -->
+                        <div class="article_list_big_1">
+                            <div class="thumb_wrapper">
+                                <div class="big_calendar_box">
+                                    <div class="date">3</div>
+                                    <div class="month">Dec</div>
+                                </div>
+                                <div class="gradient_shadow"></div>
+                                <a href="demo/blog-post/18.jpg" class="magnificPopupImage" title="Caption goes here">
+                                    <img src="/Content/demo/blog-post/18.jpg" alt="Image">
+                                </a>
+                                <div class="meta_wrapper">
+                                    <div class="star-rating" title="Rated 2.00 out of 5">
+                                        <span style="width: 40%">2.00 out of 5</span>
+                                    </div>
+                                    <h3><a href="post_gallery.html">City Manager of Ferguson Resigns</a></h3>
+                                    <div class="content_meta">
+                                        <span class="category"><a href="blog_grid.html">Fashion</a></span>
+                                        <span class="comments"><a href="post_gallery.html">325 Comments</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content_wrapper">
+                                <p>Efficiently build premier users for bleeding-edge mindshare. Intrinsicly extend collaborative content after one-to-one markets...</p>
+                            </div>
+                        </div>
+                        <!-- ======== SMALL ARTICLE LIST ======== -->
+                        <div class="small_article_list">
+                            <div class="item">
+                                <div class="item_header">
+                                    <a href="post_gallery.html">
+                                        <img src="/Content/demo/post-list/8.jpg" alt="Image">
+                                    </a>
+                                </div>
+                                <div class="item_wrapper">
+                                    <div class="item_content">
+                                        <h4><a href="post_gallery.html">Ratmansky's New 'Sleeping Beauty' Looks Back to 1890</a></h4>
+                                    </div>
+                                    <div class="content_meta">
+                                        <span class="category"><a href="blog_grid.html">Sport</a></span>
+                                        <span class="comments"><a href="post_gallery.html">325 Comments</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="item_header">
+                                    <a href="post_gallery.html">
+                                        <img src="/Content/demo/post-list/9.jpg" alt="Image">
+                                    </a>
+                                </div>
+                                <div class="item_wrapper">
+                                    <div class="item_content">
+                                        <h4><a href="post_gallery.html">An Appraisal: The Poet Philip Levine, an Outsider Archiving the Forgotten</a></h4>
+                                    </div>
+                                    <div class="content_meta">
+                                        <span class="category"><a href="blog_grid.html">Sport</a></span>
+                                        <span class="comments"><a href="post_gallery.html">325 Comments</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="item_header">
+                                    <a href="post_gallery.html">
+                                        <img src="/Content/demo/post-list/10.jpg" alt="Image">
+                                    </a>
+                                </div>
+                                <div class="item_wrapper">
+                                    <div class="item_content">
+                                        <h4><a href="post_gallery.html">An Appraisal: The Poet Philip Levine, an Outsider Archiving the Forgotten</a></h4>
+                                    </div>
+                                    <div class="content_meta">
+                                        <span class="category"><a href="blog_grid.html">Sport</a></span>
+                                        <span class="comments"><a href="post_gallery.html">325 Comments</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <a href="blog_grid.html" class="btn">Show all posts</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ======== BLOCK TITLE ======== -->
+                @*<div class="block_title">
+                        <h2>Timeline posts</h2>
+                        <a href="#" class="view_all">View all <i class="fa fa-folder-open"></i></a>
+                    </div>*@
+                <!-- ======== TIMELINE LIST ======== -->
+                @*<div class="timeline_list">*@
+                <!-- ======== POST ======== -->
+                @*<div class="item">
+                            <div class="item_date">
+                                <div class="date">28</div>
+                                <div class="month">May</div>
+                            </div>
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">Review: Bad Faith, a Dr. Paul A. Offit Book on Religion and Modern Medicine</a></h4>
+                                <div class="content_meta">
+                                    <span class="date"><a href="blog_grid.html">14:56 AM</a></span>
+                                    <span class="category"><a href="blog_grid.html">Business</a></span>
+                                    <span class="author"><a href="page_author.html">Michelle M.</a></span>
+                                </div>
+                            </div>
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">In his latest book, Dr. Offit takes aim at those who use religious reasoning to disavow lifesaving medical treatments</a></h4>
+                                <div class="content_meta">
+                                    <span class="date"><a href="blog_grid.html">19:05 AM</a></span>
+                                    <span class="category"><a href="blog_grid.html">Travel</a></span>
+                                    <span class="author"><a href="page_author.html">Charles H.</a></span>
+                                </div>
+                            </div>
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">Review: Bad Faith, a Dr. Paul A. Offit Book on Religion and Modern Medicine</a></h4>
+                                <div class="content_meta">
+                                    <span class="date"><a href="blog_grid.html">14:56 AM</a></span>
+                                    <span class="category"><a href="blog_grid.html">Business</a></span>
+                                    <span class="author"><a href="page_author.html">Michelle M.</a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ======== POST ======== -->
+                        <div class="item">
+                            <div class="item_date">
+                                <div class="date">29</div>
+                                <div class="month">May</div>
+                            </div>
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">Ratmansky's New 'Sleeping Beauty' Looks Back to 1890</a></h4>
+                                <div class="content_meta">
+                                    <span class="date"><a href="blog_grid.html">19:05 AM</a></span>
+                                    <span class="category"><a href="blog_grid.html">Business</a></span>
+                                    <span class="author"><a href="page_author.html">Michelle M.</a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ======== POST ======== -->
+                        <div class="item">
+                            <div class="item_date">
+                                <div class="date">1</div>
+                                <div class="month">Sep</div>
+                            </div>
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">The New York Philharmonic will anoint a new music director in 2017. But who? Classical music critics for The Times posit some possibilities.</a></h4>
+                                <div class="content_meta">
+                                    <span class="date"><a href="blog_grid.html">6:45 PM</a></span>
+                                    <span class="category"><a href="blog_grid.html">Fashion</a></span>
+                                    <span class="author"><a href="page_author.html">Michelle M.</a></span>
+                                </div>
+                            </div>
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">No Classified Clinton Email? Some Experts Are Skeptical</a></h4>
+                                <div class="content_meta">
+                                    <span class="date"><a href="blog_grid.html">6:45 PM</a></span>
+                                    <span class="category"><a href="blog_grid.html">Fashion</a></span>
+                                    <span class="author"><a href="page_author.html">Michelle M.</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                <!-- ======== CONTENT BANNER======== -->
+                @*<div class="content_banner">
+                        <div class="banner">
+                            <a href="http://themeforest.net/?ref=CodeoStudio" target="_blank">
+                                <img src="/Content/demo/banners/468x60.jpg" alt="GoodStart">
+                            </a>
+                        </div>
+                    </div>*@
+                <!-- ======== BLOCK TITLE ======== -->
+                <div class="block_title">
+                    <h2>Review list</h2>
+                    <a href="#" class="view_all">View all <i class="fa fa-folder-open"></i></a>
+                </div>
+                <!-- ======== REVIEW LIST ======== -->
+                <div class="review_list three">
+                    <div class="item">
+                        <div class="label">3.7 of 5</div>
+                        <div class="item_header">
+                            <a href="post_gallery.html">
+                                <img src="/Content/demo/blog-post/22.jpg" alt="Image">
+                            </a>
+                        </div>
+                        <div class="item_wrapper">
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">RuPaul David Blaine Among Speakers New York Public</a></h4>
+                            </div>
+                        </div>
+                        <div class="item_reviews">
+                            <div class="rate_type">
+                                <strong>Art</strong>
+                                <div class="star-rating" title="Rated 1.00 out of 5">
+                                    <span style="width: 20%">1.00 out of 5</span>
+                                </div>
+                            </div>
+                            <div class="rate_type">
+                                <strong>Layout</strong>
+                                <div class="star-rating" title="Rated 4.50 out of 5">
+                                    <span style="width: 90%">4.50 out of 5</span>
+                                </div>
+                            </div>
+                            <div class="rate_type">
+                                <strong>Code</strong>
+                                <div class="star-rating" title="Rated 5.00 out of 5">
+                                    <span style="width: 100%">5.00 out of 5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="label">3.7 of 5</div>
+                        <div class="item_header">
+                            <a href="post_gallery.html">
+                                <img src="/Content/demo/blog-post/23.jpg" alt="Image">
+                            </a>
+                        </div>
+                        <div class="item_wrapper">
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">David Geffen Captures Naming Rights to Avery Fisher Hall</a></h4>
+                            </div>
+                        </div>
+                        <div class="item_reviews">
+                            <div class="rate_type">
+                                <strong>Design</strong>
+                                <div class="star-rating" title="Rated 4.50 out of 5">
+                                    <span style="width: 90%">4.50 out of 5</span>
+                                </div>
+                            </div>
+                            <div class="rate_type">
+                                <strong>Photography</strong>
+                                <div class="star-rating" title="Rated 1.50 out of 5">
+                                    <span style="width: 30%">1.50 out of 5</span>
+                                </div>
+                            </div>
+                            <div class="rate_type">
+                                <strong>Quality</strong>
+                                <div class="star-rating" title="Rated 3.00 out of 5">
+                                    <span style="width: 60%">3.00 out of 5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="label">3.7 of 5</div>
+                        <div class="item_header">
+                            <a href="post_gallery.html">
+                                <img src="/Content/demo/blog-post/24.jpg" alt="Image">
+                            </a>
+                        </div>
+                        <div class="item_wrapper">
+                            <div class="item_content">
+                                <h4><a href="post_gallery.html">Winners Fill Roster at Rendez-Vous With French Cinema</a></h4>
+                            </div>
+                        </div>
+                        <div class="item_reviews">
+                            <div class="rate_type">
+                                <strong>Tutorial</strong>
+                                <div class="star-rating" title="Rated 3.00 out of 5">
+                                    <span style="width: 60%">3.00 out of 5</span>
+                                </div>
+                            </div>
+                            <div class="rate_type">
+                                <strong>Design</strong>
+                                <div class="star-rating" title="Rated 4.50 out of 5">
+                                    <span style="width: 90%">4.50 out of 5</span>
+                                </div>
+                            </div>
+                            <div class="rate_type">
+                                <strong>Art</strong>
+                                <div class="star-rating" title="Rated 1.50 out of 5">
+                                    <span style="width: 30%">1.50 out of 5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>

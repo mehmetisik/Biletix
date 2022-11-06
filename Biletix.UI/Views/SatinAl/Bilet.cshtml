@@ -1,0 +1,79 @@
+﻿@model Biletix.Entity.Gosteri
+@{
+    ViewBag.Title = "Bilet";
+    Layout = "~/Views/Shared/_LayoutPageAnasayfa.cshtml";
+   
+}
+<style>
+    #AnaDiv{
+        border-radius:20px;
+        width:60%;
+        margin-left:20%;
+        background-color:#222;
+        height:300px;
+        /*margin-bottom:10%;*/
+        padding-top:30px;
+         text-align:center;
+    }
+    #orta{
+        height:220px;
+        background-color:ghostwhite;  
+        padding-top:10px;   
+    }
+
+    #GosteriAdi{
+        color:#349dc9;
+        font-family:'Harlow Solid';
+        font-size:30px;
+        font-style:italic;
+        margin-top:-5px;
+       
+    }
+    #marka{
+        color:whitesmoke;
+        font-family:'Harlow Solid';
+        font-size:30px;
+        font-style:italic;
+        margin-top:-5px;
+    }
+    .adSoyad{
+        border-bottom:double;
+        border-bottom-color:orange;
+        width:500px;
+        text-align:left;
+        font-family:Calibri;
+        font-size:16px;
+        font-weight:bold;
+        margin-left:7%;
+        margin-top:20px;
+    }
+    #foto{
+        width:220px;
+        height:170px;
+        background-color:darkred;
+        margin-left:70%;
+        margin-top:-20%;
+    }
+
+</style>
+
+<div id="AnaDiv">
+    <span id="GosteriAdi">@Model.GösteriAdi </span><span id="marka"> - Ticket House</span>
+  <div id="orta">
+
+      <div class="adSoyad"><span style="color:red;"> Ad :</span> @Model.GösteriAdi</div>
+      <div class="adSoyad"><span style="color:red;"> Gösteri Yeri :</span>      @Model.Mekan.MekanAdi </div>
+      <div class="adSoyad"><span style="color:red;"> Saat :</span>   @Model.GosteriBaslangıcZamani</div>
+      <div class="adSoyad"><span style="color:red;"> Fiyat :</span>   </div>
+      <div id="foto" ></div>
+      
+
+
+
+
+  </div>
+
+
+
+</div>
+

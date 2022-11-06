@@ -1,0 +1,478 @@
+﻿@using System.Web.Optimization
+@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Biletix.UI.Areas.Admin.Models.ModelMekan>
+@{
+    List<Biletix.UI.Areas.Admin.Models.ModelSehir> sehirListesi = ViewBag.sehirler as List<Biletix.UI.Areas.Admin.Models.ModelSehir>;
+}
+@{
+    ViewBag.Title = "Admin-Mekanlar";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutUIAdmin.cshtml";
+}
+
+<br />
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Tüm Mekanların Listesi
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                        <div class="row"><div class="col-sm-6"></div><div class="col-sm-6"><div id="dataTables-example_filter" class="dataTables_filter" style="float:right"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="dataTables-example"></label></div></div></div><div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 172px;">Mekan Adı</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 204px;">Adres</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 149px;">ŞehirId</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 149px;">Detay</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 149px;">Güncelle</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 149px;">Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr class="gradeA odd" role="row" id="@item.MekanId">
+                                                <td class="sorting_1">@item.MekanAdi</td>
+                                                <td class="sorting_1">@item.Adres</td>
+                                                <td class="sorting_1">@item.Sehir.SehirAd</td>
+                                                <td><a href="@Url.Action("Detay","MekanAdmin",new {id=item.MekanId })">Detay</a></td>
+                                                <td><a href="#" onclick="Duzenle(this)" guncelleId="@item.MekanId">Güncelle</a></td>
+                                                <td><a href="#" onclick="Sil(this)" silId="@item.MekanId">Sil</a></td>
+                                            </tr>
+                                        }
+
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><div class="row">
+
+                            <div class="col-sm-6">
+
+                            </div>
+
+                            <div class="col-sm-6">
+
+                                <div style="float:right">
+                                    @Html.PagedListPager(Model, _sayfaNo => Url.Action("Index", "MekanAdmin", new { SayfaNo = _sayfaNo }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< İlk", LinkToPreviousPageFormat = "< Önceki", LinkToNextPageFormat = "Sonraki >", LinkToLastPageFormat = "Son >>" })
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Mekan Düzenle
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form role="form">
+                            <div class="form-group">
+                                <label>Mekan Adı</label>
+                                <input class="form-control" type="text" id="MekanAdi" value="">
+                                <p class="help-block" style="color:red" id="MekanAdValidate"></p>
+
+                                <label>Adres</label>
+                                <input class="form-control" type="text" id="Adres" value="" />
+                                <p class="help-block" style="color:red" id="adresValidete"></p>
+
+
+                                <label>Şehirler</label>
+                                <select class="form-control" id="sehirler">
+                                    @foreach (var item in sehirListesi)
+                                    {
+                                        <option id="@item.SehirId" value="@item.SehirAd">@item.SehirAd</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <button type="button" class="btn btn-default" onclick="KaydetORGuncelle(this)" id="Kaydet">Kaydet</button>
+                            <button type="reset" class="btn btn-default" onclick="iptal()">İptal</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-6">
+
+                        <form role="form">
+                            @*<div>
+                                <label>Mekan Fotoğrafları</label>
+                                <input type="file" id="resimYukle"  name="name" value="" multiple />
+                                <output id="listeDiv"></output>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr />*@
+
+                            <div>
+                                <label>Mekan Oturma Planı Foto</label>
+                                <input type="file" id="MekanresimYukle" name="name" value=""  />
+                                <p class="help-block" style="color:red" id="oturmaValidete"></p>
+
+                                <output id="listeOturmaDiv"></output>
+                            </div>
+
+                        </form>
+
+
+
+                    </div>
+
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+@Scripts.Render("~/ali")
+
+@*<script src="~/Areas/Admin/Content/bower_components/jquery/dist/jquery.min.js"></script>*@
+
+
+<script>
+    var inputMekanAd = document.getElementById("MekanAdi");
+    var inputAdres = document.getElementById("Adres");
+    var mekanOturmaPlaniFile = document.getElementById("MekanresimYukle");
+    var oturmaPlaniDivListesi = document.getElementById("listeOturmaDiv");
+    var sehirlerSeclect = document.getElementById("sehirler");
+
+    var sehirID = sehirlerSeclect[sehirlerSeclect.selectedIndex].id
+    var sehirAd = sehirlerSeclect[sehirlerSeclect.selectedIndex].value
+    
+
+    var fotoYukemeSayisi=0
+    var gelenResimListesi = new Array();
+    var gelenOturmaPlaniListesi = new Array();
+
+    var kaydetBtn = document.getElementById("Kaydet");
+
+
+    function iptal() {
+        var btnKaydet = document.getElementById("Kaydet").value = "Kaydet";
+        MekanAdValidate.innerText = ""
+        adresValidete.innerText = ""
+        inputMekanAd.value = "";
+        inputAdres.value = "";
+        mekanOturmaPlaniFile.value = "";
+        oturmaPlaniDivListesi.innerHTML = ""
+
+    }
+
+    function Sil(gelen) {
+        var silinenID = gelen.attributes["silId"].value
+        guncellenecekSati = document.getElementById(silinenID);
+
+        $.ajax({
+
+            url: '@Url.Action("Sil","MekanAdmin")',
+            type: 'GET',
+            data: {
+                id: silinenID
+            },
+            success: function () {
+                guncellenecekSati.remove();
+
+            },
+            error: function () {
+                alert("Hata")
+            }
+        })
+
+
+    }
+
+    function Duzenle(gelen) {
+
+        guncellenecekSati = document.getElementById(gelen.attributes["guncelleId"].value);
+        $.ajax({
+            url: '@Url.Action("Duzenle","MekanAdmin")',
+            type: 'GET',
+            data: {
+                id: gelen.attributes["guncelleId"].value
+            },
+            success: function (gelen) {
+                inputMekanAd.value = gelen.MekanAdi
+                inputAdres.value = gelen.Adres
+                sehirlerSeclect.value = gelen.SehirAD
+
+                kaydetBtn.innerText = "Güncelle"
+            },
+            error: function () {
+                alert("hata")
+            }
+        })
+
+    }
+
+    function MekanKaydet() {
+
+        if (fotoYukemeSayisi > 0) {
+
+
+            $.ajax({
+                url: '@Url.Action("KaydetOrGuncelle","MekanAdmin")',
+                type: 'POST',
+                data:
+                    {
+                        MekanAdi: inputMekanAd.value,
+                        Adres: inputAdres.value,
+                        SehirId: sehirID,
+                        MekanFotograflari: gelenResimListesi,
+                        OturmaPlaniFotograflari: gelenOturmaPlaniListesi
+
+                    },
+                success: function (gelen) {
+                    var mekanTabloAlani = document.getElementById("dataTables-example");
+
+                    var mekanSatir = '<tr class="gradeA odd" role="row" id="' + gelen.ID + '"><td class="sorting_1">' + inputMekanAd.value + '</td><td class="sorting_1">' + inputAdres.value + '</td><td class="sorting_1">' + sehirAd + '</td><td><a href="MekanAdmin/Detay/' + gelen.ID + '">Detay</a></td><td><a href="#" onclick="Duzenle(this)" guncelleId="' + gelen.ID + '">Güncelle</a></td><td><a href="#" onclick="Sil(this)" silId="' + gelen.ID + '">Sil</a></td></tr>'
+
+                    mekanTabloAlani.innerHTML += mekanSatir;
+                    inputMekanAd.value = "";
+                    inputAdres.value = "";
+                    mekanOturmaPlaniFile.value = "";
+                    oturmaPlaniDivListesi.innerHTML = ""
+                },
+                error: function () {
+                    alert("hata")
+                }
+            })
+        }
+    }
+
+    function KaydetORGuncelle(gelenBtn) {
+        sehirID = sehirlerSeclect[sehirlerSeclect.selectedIndex].id
+        sehirAd = sehirlerSeclect[sehirlerSeclect.selectedIndex].value
+
+        if (inputMekanAd.value == "" || inputAdres.value == "" || mekanOturmaPlaniFile.files.length ==0) {
+            if (inputMekanAd.value == "") {
+                MekanAdValidate.innerText = "Mekan Ad Boş Geçilemez"
+            }
+            else {
+                MekanAdValidate.innerText = ""
+            }
+
+            if (inputAdres.value == "") {
+                adresValidete.innerText = "Adres Boş Geçilmez"
+            }
+            else {
+                adresValidete.innerText = ""
+            }
+
+            if (mekanOturmaPlaniFile.files.length ==0) {
+                oturmaValidete.innerText = "Oturma Plani Resimi Boş geçilemez"
+            }
+            else {
+                oturmaValidete.innerText = ""
+            }
+        }
+        else {
+            MekanAdValidate.innerText = ""
+            adresValidete.innerText = ""
+            oturmaValidete.innerText = ""
+
+            //ResimYukle();
+            MekanFotoYukle();
+            //TODO: mekan Güncelleme Bozduk düzelecek
+
+
+
+            @*if (gelenBtn.innerText == "Kaydet" ) {
+                    $.ajax({
+                        url: '@Url.Action("KaydetOrGuncelle","MekanAdmin")',
+                        type: 'GET',
+                        data:
+                            {
+                                MekanAdi: inputMekanAd.value,
+                                Adres: inputAdres.value,
+                                SehirId: sehirID,
+                                MekanFotograflari: gelenResimListesi,
+                                OturmaPlaniFotograflari: gelenOturmaPlaniListesi
+
+                            },
+                        success: function (gelen) {
+                            var mekanTabloAlani = document.getElementById("dataTables-example");
+
+                            var mekanSatir = '<tr class="gradeA odd" role="row" id="' + gelen.ID + '"><td class="sorting_1">' + inputMekanAd.value + '</td><td class="sorting_1">' + inputAdres.value + '</td><td class="sorting_1">' + sehirAd + '</td><td><a href="MekanAdmin/Detay/' + gelen.ID + '">Detay</a></td><td><a href="#" onclick="Duzenle(this)" guncelleId="' + gelen.ID + '">Güncelle</a></td><td><a href="#" onclick="Sil(this)" silId="' + gelen.ID + '">Sil</a></td></tr>'
+
+                            mekanTabloAlani.innerHTML += mekanSatir;
+                            inputMekanAd.value = "";
+                            inputAdres.value = "";
+                        },
+                        error: function () {
+                            alert("hata")
+                        }
+                    })
+
+                }
+                else {
+                    sehirID = sehirlerSeclect[sehirlerSeclect.selectedIndex].id
+                    sehirAd = sehirlerSeclect[sehirlerSeclect.selectedIndex].value
+                    $.ajax({
+                        url: '@Url.Action("KaydetOrGuncelle", "MekanAdmin")',
+                        type: 'GET',
+                        data: {
+
+                            MekanId: guncellenecekSati.id,
+                            MekanAdi: inputMekanAd.value,
+                            Adres: inputAdres.value,
+                            SehirId: sehirID
+
+                        },
+                        success: function () {
+                            guncellenecekSati.cells[0].innerText = inputMekanAd.value;
+                            guncellenecekSati.cells[1].innerText = inputAdres.value;
+                            guncellenecekSati.cells[2].innerText = sehirAd;
+                            inputMekanAd.value = "";
+                            inputAdres.value = "";
+                        },
+                        error: function () {
+
+                        }
+                    })
+
+                }*@
+
+
+        }
+    }
+
+    @*function ResimYukle() {
+
+        if (window.FormData !== undefined) {
+
+            var fileUpload = $("#resimYukle").get(0);
+            var files = fileUpload.files;
+
+
+            var fileData = new FormData();
+
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+
+            //fileData.append('username', 'Manas');
+
+            $.ajax({
+                url: '@Url.Action("ResimKaydet", "MekanAdmin")',
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                data: fileData,
+                success: function (result) {
+                    //alert(result);
+                    gelenResimListesi = result;
+                    fotoYukemeSayisi++;
+                    MekanKaydet();
+
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        } else {
+            alert("FormData is not supported.");
+        }
+    }*@
+
+    function MekanFotoYukle() {
+
+        if (window.FormData !== undefined) {
+
+            var fileUpload = $("#MekanresimYukle").get(0);
+            var files = fileUpload.files;
+
+
+            var fileData = new FormData();
+
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+
+            //fileData.append('username', 'Manas');
+
+            $.ajax({
+                url: '@Url.Action("ResimKaydet", "MekanAdmin")',
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                data: fileData,
+                success: function (result) {
+                    //alert(result);
+                    gelenOturmaPlaniListesi = result;
+                    fotoYukemeSayisi++;
+                    MekanKaydet();
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        } else {
+            alert("FormData is not supported.");
+        }
+    }
+
+
+    document.getElementById('MekanresimYukle').addEventListener('change', handleFileSelect, false);
+    //document.getElementById('resimYukle').addEventListener('change', handleFileSelect, false);
+    function handleFileSelect(evt) {
+        var files = evt.target.files;
+        var hangisi = evt.target.id;
+        for (var i = 0, f; f = files[i]; i++) {
+
+
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+
+            var reader = new FileReader();
+
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    oturmaPlaniDivListesi.innerHTML = "";
+                    var span = document.createElement('span');
+                    span.innerHTML = ['<img style="width:50px;height:50px;float:left;margin-left:5px" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+
+                    document.getElementById("listeOturmaDiv").insertBefore(span, null);
+                    oturmaValidete.innerText = ""
+                    //mekanOturmaPlaniFile.disabled = true;
+
+                    //if (hangisi == "resimYukle") {
+                    //    document.getElementById("listeDiv").insertBefore(span, null);
+
+                    //}
+                    //else {
+                    //    document.getElementById("listeOturmaDiv").insertBefore(span, null);
+
+                    //}
+
+                };
+            })(f);
+
+            reader.readAsDataURL(f);
+        }
+    }
+
+</script>

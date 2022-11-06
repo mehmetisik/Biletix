@@ -1,0 +1,62 @@
+﻿@model Biletix.Entity.Uye
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageUyeSayfasi.cshtml";
+}
+
+
+<div class="widget widget_review_posts" style="width:1000px">
+    <div class="widget_title">
+        <h4>Hesap Bilgileri</h4>
+    </div>
+
+    <div class="item" style="float:left">
+        <div class="item_header">
+
+        </div>
+        <div class="item_wrapper" style="border-radius:10px">
+            <div class="item_content">
+
+                <a>E-Posta Adresi : </a>
+                <input type="text" name="EMail" value="@Model.Email" style="width:300px" /><br />
+                <a>Ad : </a>
+                <input type="text" name="Ad" value="@Model.Ad" style="width:300px" /><br />
+                <a>Soyad : </a>
+                <input type="text" name="Soyad" value="@Model.Soyad" style="width:300px" /><br />
+                <a>Adres : </a>
+                <input type="text" name="Adres" value="@Model.Adres " style="width:300px" /><br />
+                <a>Telefon : </a>
+                <input type="text" name="Telefon" value="@Model.Telefon " style="width:300px" /><br />
+            </div>
+            @*<div class="content_meta">
+                    <span class="category"><a href="blog_grid.html">Fashion</a></span>
+                    <span class="comments"><a href="post_gallery.html">0 Comments</a></span>
+                </div>*@
+        </div>
+    </div>
+    <div style="float:left;margin-left:5%;background-color:white;width:500px;height:420px;border-radius:10px" class="item_wrapper">
+        <div class="item_content" style="margin-left:5%;margin-top:1%">
+
+          
+
+            <form action="/Uye/SifreGuncelle" method="post">
+                <h4>Şifre Güncelle</h4>
+                <a>Eski Şifre</a>
+                <input type="hidden" name="eskiSifre" value="@Model.Sifre" />
+                <input type="text" name="EskiSifre" value="" style="width:300px" /><br />
+                <a>Yeni Şifre : </a>
+                <input type="text" name="Sifre" value="" style="width:300px" /><br />
+                <a>Yeni Şifre (Tekrar) : </a>
+                <input type="text" name="EMail" value="" style="width:300px" /><br />
+
+                <input type="submit" name="btnSifreGuncelle" value="Şifremi Güncelle" style="background-color:#349dc9" />
+                
+
+            </form>
+            @*<a>Adres : </a>
+            <input type="text" name="EMail" value="" style="width:300px" /><br />
+            <a>Telefon : </a>
+            <input type="text" name="EMail" value="" style="width:300px" /><br />*@
+        </div>
+    </div>
+</div>

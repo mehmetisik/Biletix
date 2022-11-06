@@ -1,0 +1,27 @@
+﻿
+@{
+
+
+    Biletix.Entity.Calisan calisan = Session["CalId"] as Biletix.Entity.Calisan;
+
+}
+
+@{
+    ViewBag.Title = "Admin-Anasayfa";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutUIAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<form action="~/Areas/Admin/Views/HomeAdmin/Index.cshtml" method="post">
+
+    <ul>
+        <li><a href="#">Hoşgeldiniz, @@calisan.Ad</a></li>
+        
+
+        <li><a href="@Url.Action("CikisYap","LoginAdmin")">Çıkış Yap</a></li>
+
+
+
+    </ul>
+</form>

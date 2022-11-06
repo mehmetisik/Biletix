@@ -1,0 +1,275 @@
+﻿@model Biletix.Entity.Gosteri
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageAnasayfa.cshtml";
+    bool sayac = true;
+
+    //List<Biletix.Entity.Gosteri> Fotoliste = ViewBag.Fotograflar as List<Biletix.Entity.Gosteri>;
+    List<Biletix.Entity.Gosteri> benzerGosteriler = ViewBag.BenzerKategoriGosteriler as List<Biletix.Entity.Gosteri>;
+    
+}
+
+<section id="page_wrapper">
+    <div class="container">
+        <div class="row">
+            <!-- ======== MAIN CONTENT ======== -->
+            <div class="col col_12_of_12 main_content">
+                <!-- ======== PAGE TITLE ======== -->
+                <div id="page_title">
+                    <h1>@Model.GösteriAdi</h1>
+                </div>
+                <!-- ======== BREADCRUMB ======== -->
+                <ul class="breadcrumb">
+                    <li><a href="@Url.Action("Index","Home")">Anasayfa</a></li>
+                    <li><a href="index-2.html">@Model.AltKategori.Kategori.KategoriAdi </a></li>
+                    <li><a href="shop_category.html">@Model.AltKategori.AltKategoriAdi </a></li>
+                    <li>@Model.GösteriAdi</li>
+                </ul>
+                <!-- ======== PRODUCT ======== -->
+                <div class="product">
+                    <span class="onsale">Sale!</span>
+                    <div class="images">
+                      
+                        @foreach (var item in Model.GosteriFotograflari)
+                        {
+                            if (sayac)
+                            {
+                                <a href="demo/shop-products/1.jpg" class="magnificPopupImage"><img id="buyukResim" src="~/Content/image/@item.FotoAdi" style="width:450px;height:300px" alt="Product"></a>
+                                sayac = false;
+
+
+                            }
+                            <div class="thumbnails" style="float:left">
+                                <a href="demo/shop-products/2.jpg" class="magnificPopupImage"><img id="kucukResim" src="~/Content/image/@item.FotoAdi" alt="Product" style="width:100px;height:75px;" onmouseover ="buyult()" ></a>
+                            </div>
+
+                        }
+
+                    </div>
+                    <div class="summary">
+                        <h1 class="product_title">@Model.GösteriAdi</h1>
+                        <div class="woocommerce-product-rating">
+                            <div class="star-rating" title="Rated 3.00 out of 5">
+                                <span style="width: 60%">3.00 out of 5</span>
+                            </div>
+                            <a href="#">@Model.GosteriBaslangıcZamani</a>
+                        </div>
+                        <p class="price">
+                            @*<del><span class="amount">$35.00</span></del>*@
+                            <ins><span class="amount">@Model.Mekan.MekanAdi </span></ins>
+                        </p>
+                        <p>@Model.Aciklama </p>
+                        <form action="@Url.Action("SatinAlmaOncesi","GosteriDetay", new {id = Model.GosteriId })" method="post">
+                            @*<div class="quantity">
+                                <input type="number" step="1" min="1" name="quantity" value="1" class="input-text qty text">
+                            </div>*@
+                            <button type="submit" style="width:150px">Bilet Satın Al</button>
+                        </form>
+                        <div class="product_meta">
+                            <span>Kategori: <a href="#">@Model.AltKategori.Kategori.KategoriAdi </a>, <a href="#">@Model.AltKategori.AltKategoriAdi </a></span>
+                            <span>Etiket: <a href="#">@Model.GösteriAdi </a>, <a href="#">@Model.AltKategori.Kategori.KategoriAdi</a>, <a href="#">@Model.AltKategori.AltKategoriAdi</a></span>
+                        </div>
+                    </div>
+                    <!-- ======== TABS ======== -->
+                    <div class="woocommerce-tabs">
+                        <div class="tab_group ui-tabs ui-widget ui-widget-content ui-corner-all">
+                            <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+
+                                <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="tabs-1" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true"><a href="#tabs-1" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1" >Açıklama</a></li>
+
+                                <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-2" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a href="#tabs-2" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">Bilet Fiyatları</a></li>
+
+                                <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-3" aria-labelledby="ui-id-3" aria-selected="false" aria-expanded="false"><a href="#tabs-3" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Lütfen Okuyunuz</a></li>
+
+                            </ul>
+                            <div id="tabs-1" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false">
+                                @*<h2>Duman, Atlantis Yapım organizasyonuyla Vodafone Red Harbiye Açıkhava Konserleri kapsamında 16 Haziran Perşembe akşamı Cemil Topuzlu Harbiye Açıkhava Sahnesi'nde!</h2>
+                                <p>Vodafone  Red abonelerine, Vodafone Red Harbiye Açıkhava konseri protokol kategorisi hariç ilk 3 Kategori bilet için geçerli olarak  tam bilet giriş  fiyatı üzerinden, %20 indirim uygulanacaktır. </p>
+                                <p>Vodafone Red aboneleri kampanyadan faydalanmak için HARBIYE yazıp 6666'ya SMS göndererek kampanya şifrelerini alabilirler.</p>*@
+                                @Model.Aciklama
+
+
+
+                            </div>
+                            <div id="tabs-2" aria-labelledby="ui-id-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+                                <h2>Fiyat Bilgileri</h2>
+
+                                @foreach (var item in Model.Fiyatlar)
+                                {
+                                    if (Model.Fiyatlar == null)
+                                    {
+                                        <p>Fiyat Bilgisi Girilmemiş.</p>
+                                    }
+                                    else
+                                    {
+                                        <p>@item.Aciklama : @item.Fiyat TL<br /></p>
+                                        
+                                    }
+
+
+
+                                }
+                                
+                                
+
+                            </div>
+                            <div id="tabs-3" aria-labelledby="ui-id-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+                                <h2>Lütfen dikkat!</h2>
+                                <p>Bu etkinlik <span style="color:red;font-weight:bold">Özel Kurallara</span>   tabidir.
+- Organizasyon şirketi, bilet fiyatlarında değişiklik yapma hakkına sahiptir.
+- Belirtilen saat kapı açılış saatidir.
+- Organizasyon şirketi, öngörülmeyen ve kaçınılmaz nedenlerden ötürü programda her türlü değişiklik yapma hakkını saklı tutar.
+- Organizasyon şirketi, uygun görmediği kişileri bilet fiyatını iade ederek mekana almama hakkına sahiptir.- Etkinlik alanında oturma düzeni yoktur.
+- Deluxe VIP Teras bilet sahipleri Diamond Circle bölümünede giriş yapabilecektir.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ======== RELATED ARTICLES ======== -->
+                    <div class="block_title">
+                        <h2>Benzer Etkinlikler</h2>
+                    </div>
+
+                    <ul class="products four"  >
+
+                        @foreach (var item in benzerGosteriler)
+                        {
+                            <li class="product" style="width:22%">
+                                <a href="shop_single.html" class="product_item">
+                                    <span class="onsale">Sale!</span>
+                                    <div class="product_hover">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>@item.GösteriAdi </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <img src="/Content/demo/shop-products/2.jpg" alt="Product">
+                                </a>
+                                <div class="product_footer">
+                                    <div class="star-rating" title="Rated 3.00 out of 5">
+                                        <span style="width: 60%">3.00 out of 5</span>
+                                    </div>
+                                    <span class="price">
+                                        @*<del><span class="amount">$15.00</span></del>*@
+
+                                        @if (item.GösteriAdi.Length < 31)
+                                        {
+                                            <ins><span class="amount">@item.GösteriAdi </span></ins>
+                                        }
+                                        else
+                                        {
+                                            <ins><span class="amount">@item.GösteriAdi.Substring(0, 27);... </span></ins>
+                                        }
+
+
+                                    </span>
+                                    <a href="shop_single.html" class="btn btn_small" style="background-color:#349dc9">Bilet Satın Al</a>
+                                </div>
+                            </li>
+                        }
+
+
+
+
+                       
+                        @*<li class="product">
+                            <a href="shop_single.html" class="product_item">
+                                <div class="product_hover">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>Kolpa</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <img src="/Content/demo/shop-products/2.jpg" alt="Product">
+                            </a>
+                            <div class="product_footer">
+                                <div class="star-rating" title="Rated 0.00 out of 5">
+                                    <span style="width: 0%">0.00 out of 5</span>
+                                </div>
+                                <span class="price">
+                                    @*<del><span class="amount">$15.00</span></del>*@
+                                    @*<ins><span class="amount">Kolpa Konseri</span></ins>
+                                </span>
+                                <a href="shop_single.html" class="btn btn_small" style="background-color:#349dc9">Bilet Satın Al</a>
+                            </div>
+                        </li>
+                        <li class="product">
+                            <a href="shop_single.html" class="product_item">
+                                <div class="product_hover">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>Manga</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <img src="/Content/demo/shop-products/3.jpg" alt="Product">
+                            </a>
+                            <div class="product_footer">
+                                <div class="star-rating" title="Rated 1.00 out of 5">
+                                    <span style="width: 20%">1.00 out of 5</span>
+                                </div>
+                                <span class="price">*@
+                                    @*<del><span class="amount">$15.00</span></del>*@
+                                    @*<ins><span class="amount">Manga Konseri</span></ins>
+                                </span>
+                                <a href="shop_single.html" class="btn btn_small" style="background-color:#349dc9">Bilet Satın Al</a>
+                            </div>
+                        </li>
+                        <li class="product last">
+                            <a href="shop_single.html" class="product_item">
+                                <div class="product_hover">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>Yüksek Sadakat</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <img src="/Content/demo/shop-products/4.jpg" alt="Product">
+                            </a>
+                            <div class="product_footer">
+                                <div class="star-rating" title="Rated 4.00 out of 5">
+                                    <span style="width: 80%">4.00 out of 5</span>
+                                </div>
+                                <span class="price">*@
+                                    @*<del><span class="amount">$15.00</span></del>*@
+                                    @*<ins><span class="amount">Manga Konseri</span></ins>
+                                </span>
+                                <a href="shop_single.html" class="btn btn_small" style="background-color:#349dc9">Bilet Satın Al</a>
+                            </div>
+                        </li>*@
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var kucuk = document.getElementById("kucukResim");
+    var buyuk = document.getElementById("buyukResim");
+    
+
+    function buyult() {
+       
+         
+       
+        //alert(buyuk.src);
+        //alert(kucuk.src);
+    }
+
+    
+
+
+
+</script>

@@ -1,0 +1,186 @@
+﻿@{ 
+
+    List<Biletix.Entity.Kategori> kategoriListe = ViewBag.Kategoriler as List<Biletix.Entity.Kategori>;
+
+    Biletix.Entity.Uye uye = Session["UyeGiris"] as Biletix.Entity.Uye;
+
+}
+
+<div class="container">
+    <!-- ======== BUTTON FOR MOBILE MENU ======== -->
+    <a class="open_menu_mobile"><i class="fa fa-bars"></i></a>
+    <!-- ======== MENU ======== -->
+    <nav class="site_navigation">
+        <ul class="menu">
+            <li class="menu-item-has-children current-menu-item">
+                <a href="@Url.Action("Index","Home") ">Anasayfa </a>
+            </li>
+
+             
+            @foreach (var item in kategoriListe)
+            {
+                <li class="menu-item-has-children has_cs_mega_menu">
+                    <a href="@Url.Action("Index","Kategori" ,new { id = item.KategoriAdi } ) ">@item.KategoriAdi</a>
+                    <ul class="cs_mega_menu">
+                        <li>
+                            <!-- ======== WIDGET - CATEGORY ======== -->
+                            <div class="widget widget_categories">
+                                <div class="widget_title">
+                                    <h4>Popüler Kategoriler</h4>
+                                </div>
+                                <ul>
+                                    @foreach (var item2 in item.AltKategoriler)
+                                    {
+                                        <li><a href="index_1.html">@item2.AltKategoriAdi</a></li>
+
+                                    }
+
+                                    @*<li><a href="index_1.html">Parallax header post</a></li>
+                                    <li><a href="index_2.html">Posts carousel slider</a></li>
+                                    <li><a href="index_3.html">Regular slider with sidebar</a></li>
+                                    <li><a href="index_4.html">Grid with custom image</a></li>
+                                    <li><a href="index_5.html">All homepage blocks</a></li>
+                                    <li><a href="index_6.html">Blog style home</a></li>*@
+                                </ul>
+                            </div>
+                            <!-- ======== WIDGET - CATEGORY ======== -->
+                            <div class="widget widget_categories">
+                                <div class="widget_title">
+                                    <h4>Popüler Gösteriler</h4>
+                                </div>
+                                <ul>
+                                    <li><a href="page_shortcodes.html">Shortcodes page</a></li>
+                                    <li><a href="page_404.html">404 Page</a></li>
+                                    <li><a href="page_author.html">Author page</a></li>
+                                    <li><a href="page_contact.html">Contact page</a></li>
+                                    <li><a href="page_fullwidth.html">Full width page</a></li>
+                                    <li><a href="page_left_sidebar.html">Left sidebar page</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- ======== WIDGET - CATEGORY ======== -->
+
+                        </li>
+                    </ul>
+                </li>
+            }
+
+            @if (uye == null)
+            {
+                <li class="menu-item-has-children current-menu-item" style="margin-left:15%;">
+                    <a href="index-2.html">Üye Girişi</a>
+
+                    <ul class="cs_mega_menu" style="width:300px; margin-left:71%;">
+                        <li>
+                            <!-- ======== WIDGET - CATEGORY ======== -->
+                            <div class="widget widget_categories" style="width:auto;">
+                                <div class="widget_title">
+                                    <h4>Giriş Yap</h4>
+                                </div>
+                                <form action="/Home/UyeGiris" method="post">
+
+                                    <ul>
+                                        <li>
+                                        <input type="text" name="Email" value="" placeholder="Mail Adresiniz.." style="width:250px;" />
+                                        </li>
+                                        <li>
+                                        <input type="password" name="Sifre" value="" placeholder="Şifreniz" style="width:250px;" />
+                                        </li>
+                                        <li>
+                                        <input type="submit" name="btn_giris" value="Giriş Yap" style="background-color: #349dc9" /><a href="@Url.Action("SifremiUnuttum","Uye")"> Şifremi Unuttum.</a> 
+                                        </li>
+
+                                    </ul>
+                                </form>
+                            </div>
+                            <!-- ======== WIDGET - CATEGORY ======== -->
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children current-menu-item">
+                    <a href="index-2.html">Kayıt Ol</a>
+
+                    <ul class="cs_mega_menu" style="width:300px; margin-left:71%;">
+                        <li>
+                            <!-- ======== WIDGET - CATEGORY ======== -->
+                            <div class="widget widget_categories" style="width:auto;">
+                                <div class="widget_title">
+                                    <h4>Üye Kayıt</h4>
+                                </div>
+                                <form action="/Home/KayitOl" method="post">
+                                    <ul>
+
+                                        <li><input type="text" name="Ad" value="" placeholder="Adınız.." style="width:250px;" />
+                                        </li>
+                                        <li><input type="text" name="Soyad" value="" placeholder="Soyadınız.." style="width:250px;" /></li>
+                                        <li><input type="text" name="Email" value="" placeholder="Mail Adresiniz.." style="width:250px;" /></li>
+                                        <li><input type="password" name="Sifre" value="" placeholder="Şifreniz" style="width:250px;" /></li>
+                                        <li><input type="password" name="SifreTekrar" value="" placeholder="Şifre Tekrar" style="width:250px;" /></li>
+                                        <li><input type="text" name="Adres" value="" placeholder="Adresiniz.." style="width:250px;" /></li>
+
+                                        <li>
+                                            <select>
+                                                <option>Şehir Seçiniz</option>
+                                                @foreach (var item in ViewBag.Sehirler)
+                                                {
+                                                    <option  value="@item.SehirId">@item.SehirAd</option>
+                                                }
+                                            </select>
+                                        </li>
+
+                                        @*<li><input type="text" name="Il" value="" placeholder="Sehir.." style="width:250px;" /></li>*@
+                                        <li><input type="text" name="Telefon" value="" placeholder="Telefon Numaranız.." style="width:250px;" />
+                                        <li><input type="submit" name="btn_giris" value="Kayıt Ol" style="background-color: #349dc9" /></li>
+
+
+                                    </ul>
+                                </form>
+                            </div>
+                            <!-- ======== WIDGET - CATEGORY ======== -->
+                        </li>
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="menu-item-has-children current-menu-item" style="margin-left:16%;">
+
+                    @{
+                        <a href="#">Hoşgeldiniz, @uye.Ad</a>
+                    }
+                    @*<a href="index-2.html">Hoşgeldiniz, Çağıl</a>*@
+
+                    <ul class="cs_mega_menu" style="width:300px; margin-left:71%;">
+                        <li>
+                            <!-- ======== WIDGET - CATEGORY ======== -->
+                            <div class="widget widget_categories" style="width:auto;">
+                                <div class="widget_title">
+                                    <h4>Giriş Yap</h4>
+                                </div>
+                                <form action="/Home/UyeGiris" method="post">
+
+                                    <ul>
+                                        <li><a href="@Url.Action("Hesabim","Home") ">Hesabım</a></li>
+                                        <li><a>Biletlerim</a></li>
+                                        <li><a>Favori Gösterilerim</a></li>
+                                        
+                                        <li><a href="@Url.Action("CikisYap","Home")">Çıkış Yap</a></li>
+                                        
+
+
+                                    </ul>
+                                </form>
+                            </div>
+                            
+                        </li>
+                    </ul>
+                </li>
+
+            }
+
+</ul>
+    </nav>
+</div>
+
+
+   

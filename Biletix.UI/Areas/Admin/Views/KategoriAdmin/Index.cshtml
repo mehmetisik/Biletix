@@ -1,0 +1,245 @@
+﻿@using System.Web.Optimization
+@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Biletix.UI.Areas.Admin.Models.ModelKategori>
+@{
+    ViewBag.Title = "Admin-Kategoriler";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutUIAdmin.cshtml";
+}
+
+<br />
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Tüm Kategori Listesi
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6"><div style="float:right" id="dataTables-example_filter" class="dataTables_filter"><label>Ara:<input type="search" class="form-control input-sm" placeholder="" aria-controls="dataTables-example"></label></div></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 172px;">
+                                                Kategoriler
+                                            </th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 172px;">
+                                                Güncelle
+                                            </th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" style="width: 172px;">
+                                                Sil
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr id="@item.KategoriId" class="gradeA odd" role="row">
+                                                <td class="sorting_1">@item.KategoriAdi </td>
+                                                <td class="sorting_1">
+                                                    <a href="#" urunGID="@item.KategoriId" onclick="duzenle(this)">Güncelle</a>
+                                                </td>
+                                                <td class="sorting_1">
+                                                    <a href="#" urunSID="@item.KategoriId" onclick="sil(this)">Sil</a>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                        @*<tr class="gradeA odd" role="row">
+                                                <td class="sorting_1">denem</td>
+                                                <td class="sorting_1"><a href="#">Güncelle</a></td>
+                                                <td class="sorting_1"><a href="#">Sil</a></td>
+                                            </tr>*@
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><div class="row">
+
+                            <div class="col-sm-6">
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div style="float:right">
+                                    @Html.PagedListPager(Model, _sayfaNo => Url.Action("Index", "KategoriAdmin", new { SayfaNo = _sayfaNo }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< İlk", LinkToPreviousPageFormat = "< Önceki", LinkToNextPageFormat = "Sonraki >", LinkToLastPageFormat = "Son >>" })
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.table-responsive -->
+
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Kategori Düzenleme
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form role="form">
+                            <div class="form-group">
+                                <label>Kategori Ad</label>
+                                <input class="form-control" type="text" kategoriID="" id="Kategori" value="">
+                                <p class="help-block" id="kategoriAdValidate" style="color:red"></p>
+                            </div>
+
+                            <button type="button" class="btn btn-default" id="KaydetOrGuncelleBtn" onclick="KaydetOrGuncelle(this)">Kaydet</button>
+                            <button type="reset" class="btn btn-default" onclick="iptal()">İptal</button>
+                        </form>
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+                    <!-- /.col-lg-6 (nested) -->
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+@Scripts.Render("~/ali")
+
+@*<script src="~/Areas/Admin/Content/bower_components/jquery/dist/jquery.min.js"></script>*@
+
+<script>
+
+    function iptal() {
+        var kategoriAd = document.getElementById("Kategori").value = "";
+        var kaydetBtn = document.getElementById("KaydetOrGuncelleBtn").innerText = "Kaydet";
+        var kategoriAdValida = document.getElementById("kategoriAdValidate").innerText = "";
+
+    }
+
+    function sil(gelen) {
+        var silinecekID = gelen.attributes["urunSID"].value;
+
+        $.ajax({
+            url: '@Url.Action("KategoriSil", "KategoriAdmin")',
+            type: 'GET',
+            data: {
+                ID: silinecekID
+            },
+            success: function () {
+                var silinecekSatir = document.getElementById(silinecekID);
+
+                silinecekSatir.remove();
+            },
+            error: function () {
+                alert("Hata")
+            }
+
+
+        })
+    }
+    var guncellenecekSatie;
+    var guncelKategoriAd;
+    function duzenle(gelen) {
+        var guncellenecekID = gelen.attributes["urunGID"].value;
+        var kategoriİnput = document.getElementById("Kategori");
+        guncellenecekSatie = document.getElementById(guncellenecekID);
+        var kaydetToGuncelleButon = document.getElementById("KaydetOrGuncelleBtn");
+        $.ajax({
+            url: '@Url.Action("KategoriDuzenle", "KategoriAdmin")',
+            type: 'GET',
+            data: {
+                ID: guncellenecekID
+
+            },
+            success: function (data) {
+                kategoriİnput.value = data.KategoriAdi;
+                kategoriİnput.attributes["kategoriid"].value = data.KategoriId
+                kaydetToGuncelleButon.innerText = "Güncelle"
+                guncelKategoriAd = data.KategoriAdi;
+            },
+            error: function () {
+                alert("Hata")
+            }
+        })
+    }
+
+    function KaydetOrGuncelle(gelen) {
+        var kategoriAd = document.getElementById("Kategori");
+        var kategoriAdValida = document.getElementById("kategoriAdValidate");
+        if (kategoriAd.value == "") {
+            kategoriAdValida.innerText = "Kategori Adı Boş Geçilemez"
+        }
+        else {
+            kategoriAdValida.innerText = ""
+
+
+            if (gelen.innerText == "Kaydet") {
+                $.ajax({
+
+                    url: '@Url.Action("KategoriKaydetGuncelle", "KategoriAdmin")',
+                    type: 'GET',
+                    data: {
+                        KategoriAdi: kategoriAd.value
+                    },
+                    success: function (ali) {
+                        var KategoriSatirlar = document.getElementById("dataTables-example");
+
+                        var htmlKategori = '<tr id="' + ali.ID + '" class="gradeA odd" role="row"> <td class="sorting_1">' + kategoriAd.value + '</td> <td class="sorting_1"><a href="#" urunGID="' + ali.ID + '" onclick="duzenle(this)">Güncelle</a></td> <td class="sorting_1"><a href="#" urunSID="' + ali.ID + '" onclick="sil(this)" >Sil</a></td> </tr>'
+
+                        KategoriSatirlar.innerHTML += htmlKategori;
+                        kategoriAd.value = "";
+                    },
+                    error: function () {
+                        alert("Hata")
+                    }
+
+
+                });
+            }
+            else {
+                var kategoriİnput = document.getElementById("Kategori");
+
+                $.ajax({
+                    url: '@Url.Action("KategoriKaydetGuncelle", "KategoriAdmin")',
+                    type: 'GET',
+                    data: {
+                        KategoriId: guncellenecekSatie.id,
+                        KategoriAdi: kategoriİnput.value
+
+                    },
+                    success: function () {
+                        guncellenecekSatie.cells[0].innerText = kategoriİnput.value
+                        kategoriİnput.value = "";
+                        gelen.innerText = "Kaydet";
+
+                    },
+                    error: function () {
+                        alert("Hata")
+                    }
+
+                })
+
+
+
+            }
+        }
+    }
+
+</script>
